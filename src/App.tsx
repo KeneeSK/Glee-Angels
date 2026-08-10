@@ -9,12 +9,20 @@ import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
 import { ReservationModal } from './components/ReservationModal';
 import { AudioSynthesizerBar } from './components/AudioSynthesizerBar';
+import { useMediaQuery } from './hooks/useMediaQuery';
+import { MobileApp } from './components/MobileApp';
 
 export default function App() {
-  const [lang, setLang] = useState<Language>('en');
+  const [lang, setLang] = useState<Language>('ko');
   const [reservationModalOpen, setReservationModalOpen] = useState<boolean>(false);
   const [reservationFloor, setReservationFloor] = useState<'1F' | '2F'>('1F');
   const [reservationPackageId, setReservationPackageId] = useState<string>('');
+  
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  if (isMobile) {
+    return <MobileApp />;
+  }
 
   const handleOpenReservation = (floor: '1F' | '2F' = '1F', packageId: string = '') => {
     setReservationFloor(floor);
