@@ -1,0 +1,6 @@
+{
+  "name": "Glee Angels Music Lounge",
+  "description": "Premium Live Music Lounge & Family KTV in Angeles City, Philippines - Live Bands, Daily Performance Schedule, VIP Booking & Food/Drinks Menu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

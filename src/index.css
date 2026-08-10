@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Neon Text Glow Effects */
+  .neon-text-blue {
+    color: #00f0ff;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.6),
+                 0 0 15px rgba(0, 240, 255, 0.4),
+                 0 0 30px rgba(0, 240, 255, 0.2);
+  }
+
+  .neon-text-pink {
+    color: #ff00aa;
+    text-shadow: 0 0 5px rgba(255, 0, 170, 0.6),
+                 0 0 15px rgba(255, 0, 170, 0.4),
+                 0 0 30px rgba(255, 0, 170, 0.2);
+  }
+
+  .neon-text-gold {
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.6),
+                 0 0 15px rgba(255, 215, 0, 0.4),
+                 0 0 30px rgba(255, 215, 0, 0.2);
+  }
+
+  .neon-text-purple {
+    color: #b829ea;
+    text-shadow: 0 0 5px rgba(184, 41, 234, 0.6),
+                 0 0 15px rgba(184, 41, 234, 0.4),
+                 0 0 30px rgba(184, 41, 234, 0.2);
+  }
+
+  /* Neon Box Glows */
+  .neon-border-blue {
+    border-color: #00f0ff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+  }
+
+  .neon-border-pink {
+    border-color: #ff00aa;
+    box-shadow: 0 0 10px rgba(255, 0, 170, 0.3), inset 0 0 10px rgba(255, 0, 170, 0.1);
+  }
+
+  .neon-border-gold {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.1);
+  }
+
+  .neon-border-purple {
+    border-color: #b829ea;
+    box-shadow: 0 0 10px rgba(184, 41, 234, 0.3), inset 0 0 10px rgba(184, 41, 234, 0.1);
+  }
+
+  .glass-panel {
+    background: rgba(18, 21, 32, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-panel-hover {
+    transition: all 0.3s ease;
+  }
+  .glass-panel-hover:hover {
+    background: rgba(26, 31, 48, 0.85);
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.15);
+  }
+
+  /* Custom Glow Background Gradients */
+  .bg-dark-radial {
+    background: radial-gradient(circle at 50% 20%, #17102e 0%, #090a0f 80%);
+  }
+
+  .bg-neon-gradient {
+    background: linear-gradient(135deg, rgba(0,240,255,0.15) 0%, rgba(255,0,170,0.15) 50%, rgba(184,41,234,0.15) 100%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #252a3e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Keyframes for neon pulse */
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+  }
+  50% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.4));
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2.5s infinite ease-in-out;
+}
+
