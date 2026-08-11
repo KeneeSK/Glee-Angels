@@ -20,7 +20,7 @@ export const MobileApp: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-[#090a0f] text-white overflow-hidden relative">
+    <div className="flex flex-col h-screen w-full bg-[#090a0f] text-white overflow-hidden relative">
       {/* Top App Bar */}
       <div className="h-14 shrink-0 bg-[#0c0e14] border-b border-zinc-800 flex items-center justify-between px-4 z-50">
         <div className="font-black text-lg neon-text-cyan font-mono tracking-tighter">

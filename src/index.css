@@ -108,3 +108,10 @@
   animation: neonPulse 2.5s infinite ease-in-out;
 }
 
+
+@layer base {
+  body, html {
+    background-color: #090a0f;
+    color: white;
+  }
+}
