@@ -24,8 +24,9 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
+      const topOffset = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: Math.max(0, topOffset),
         behavior: 'smooth'
       });
       setMobileMenuOpen(false);

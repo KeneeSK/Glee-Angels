@@ -193,23 +193,40 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
         {/* Category Selector Tabs */}
         <div className="flex justify-center mb-8">
           <div className="bg-zinc-900/90 p-2 rounded-2xl border border-zinc-800/80 flex flex-wrap justify-center gap-1.5 sm:gap-2 shadow-xl backdrop-blur-lg max-w-5xl">
-            {/* SPECIAL SETS (HIGHLIGHTED) */}
-
-            {/* KOREAN FOOD */}
-
-            {/* FILIPINO FOOD */}
-
-            {/* SNACKS & BITES */}
-
-            {/* WESTERN & PIZZA */}
-
-            {/* COCKTAILS */}
-
-            {/* BEER & LIQUOR */}
-
-            {/* BEVERAGE & SHISHA */}
-
-            {/* HIGHLIGHTS */}
+            {[
+              { id: 'sets' as const, labelKo: '🔥 스페셜 세트', labelEn: '🔥 Special Sets', icon: <Crown className="w-3.5 h-3.5 text-amber-400" />, highlight: true },
+              { id: 'korean' as const, labelKo: '한식 요리', labelEn: 'Korean Food', icon: <Utensils className="w-3.5 h-3.5 text-red-400" /> },
+              { id: 'filipino' as const, labelKo: '필리핀 요리', labelEn: 'Filipino Food', icon: <Soup className="w-3.5 h-3.5 text-yellow-400" /> },
+              { id: 'snacks' as const, labelKo: '스낵 & 안주', labelEn: 'Snacks & Bites', icon: <Pizza className="w-3.5 h-3.5 text-orange-400" /> },
+              { id: 'western' as const, labelKo: '양식 & 피자', labelEn: 'Western & Pizza', icon: <Pizza className="w-3.5 h-3.5 text-emerald-400" /> },
+              { id: 'cocktails' as const, labelKo: '시그니처 칵테일', labelEn: 'Cocktails', icon: <Wine className="w-3.5 h-3.5 text-cyan-400" /> },
+              { id: 'liquor' as const, labelKo: '맥주 & 보틀', labelEn: 'Beer & Spirits', icon: <Beer className="w-3.5 h-3.5 text-purple-400" /> },
+              { id: 'nonalcoholic' as const, labelKo: '음료 & 시샤', labelEn: 'Beverage & Shisha', icon: <GlassWater className="w-3.5 h-3.5 text-teal-400" /> },
+              { id: 'highlights' as const, labelKo: '⭐ 인기 & 추천', labelEn: '⭐ Popular & Top', icon: <Sparkles className="w-3.5 h-3.5 text-pink-400" /> },
+            ].map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer ${
+                    isActive
+                      ? cat.highlight
+                        ? 'bg-gradient-to-r from-amber-500 to-yellow-600 text-black shadow-lg shadow-amber-500/30 scale-105'
+                        : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 scale-105'
+                      : 'bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700/80 hover:text-white border border-zinc-700/50'
+                  }`}
+                >
+                  {cat.icon}
+                  <span>{lang === 'ko' ? cat.labelKo : cat.labelEn}</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    isActive ? 'bg-black/20 text-current' : 'bg-zinc-700 text-zinc-300'
+                  }`}>
+                    {counts[cat.id]}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -234,8 +251,38 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
 
           {/* Quick Filter Badges */}
           <div className="flex items-center space-x-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
-
-
+            <button
+              onClick={() => setFilterType('all')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                filterType === 'all'
+                  ? 'bg-zinc-200 text-black font-bold'
+                  : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'
+              }`}
+            >
+              {lang === 'ko' ? '전체' : 'All'}
+            </button>
+            <button
+              onClick={() => setFilterType('popular')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center space-x-1 cursor-pointer ${
+                filterType === 'popular'
+                  ? 'bg-pink-500 text-white font-bold shadow-md shadow-pink-500/30'
+                  : 'bg-zinc-900 text-zinc-400 hover:text-pink-400 border border-zinc-800'
+              }`}
+            >
+              <Flame className="w-3 h-3" />
+              <span>{lang === 'ko' ? '인기 (HOT)' : 'Popular'}</span>
+            </button>
+            <button
+              onClick={() => setFilterType('recommended')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center space-x-1 cursor-pointer ${
+                filterType === 'recommended'
+                  ? 'bg-amber-500 text-black font-bold shadow-md shadow-amber-500/30'
+                  : 'bg-zinc-900 text-zinc-400 hover:text-amber-400 border border-zinc-800'
+              }`}
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>{lang === 'ko' ? '추천' : 'Recommended'}</span>
+            </button>
           </div>
         </div>
 
