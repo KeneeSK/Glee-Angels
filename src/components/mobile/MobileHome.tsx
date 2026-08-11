@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Language } from '../../types';
 import { translations } from '../../data/translations';
 import { dailyEntertainmentSchedule, weeklySchedule } from '../../data/scheduleData';
-import { Calendar, Clock, Music, Mic2, Star, Download, X, PlayCircle, ChevronRight, Share, PlusSquare } from 'lucide-react';
+import { Calendar, Clock, Music, Mic2, Star, PlayCircle, ChevronRight } from 'lucide-react';
 import loungeStageImg from '../../assets/images/lounge_stage_neon_1786343408212.jpg';
 
 interface MobileHomeProps {
@@ -11,8 +11,6 @@ interface MobileHomeProps {
 
 export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
   const t = translations[lang];
-  const [showInstallBanner, setShowInstallBanner] = useState(true);
-  const [showInstallGuide, setShowInstallGuide] = useState(false);
 
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const todayId = days[new Date().getDay()];
@@ -20,78 +18,6 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
 
   return (
     <div className="flex flex-col pb-6">
-      {/* PWA Install Banner */}
-      {showInstallBanner && (
-        <div className="bg-gradient-to-r from-cyan-600 to-blue-700 p-3 flex items-center justify-between shadow-lg z-50">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-md">
-              <Download className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p className="text-white text-sm font-bold leading-tight">
-                {lang === 'en' ? 'Install Glee Angels App' : '글리 앙헬레스 앱 설치'}
-              </p>
-              <p className="text-cyan-100 text-[10px]">
-                {lang === 'en' ? 'Add to Home Screen for quick access' : '홈 화면에 추가하여 빠르게 접속하세요'}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <button 
-              className="bg-white text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-md active:scale-95 transition-transform"
-              onClick={() => setShowInstallGuide(true)}
-            >
-              {lang === 'en' ? 'INSTALL' : '설치'}
-            </button>
-            <button onClick={() => setShowInstallBanner(false)}>
-              <X className="w-5 h-5 text-cyan-200" />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Install Guide Modal */}
-      {showInstallGuide && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#12141c] border border-cyan-500/40 rounded-3xl p-6 max-w-sm w-full space-y-4 text-center relative shadow-2xl animate-in zoom-in-95">
-            <button 
-              onClick={() => setShowInstallGuide(false)}
-              className="absolute top-4 right-4 p-1 rounded-full bg-zinc-800 text-zinc-400 hover:text-white"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="w-12 h-12 bg-cyan-500/20 border border-cyan-500/50 rounded-2xl flex items-center justify-center mx-auto text-cyan-400">
-              <Download className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-white">
-              {lang === 'ko' ? '앱 홈 화면에 추가' : 'Add to Home Screen'}
-            </h3>
-            <p className="text-xs text-zinc-300 leading-relaxed">
-              {lang === 'ko' 
-                ? '브라우저 하단 또는 상단의 [공유] 버튼을 누른 후 [홈 화면에 추가]를 선택하면 언제든지 빠르게 모바일 앱에 접속할 수 있습니다.'
-                : 'Tap the [Share] button in your mobile browser menu, then select [Add to Home Screen] for instant 1-tap access.'
-              }
-            </p>
-            <div className="flex items-center justify-center space-x-4 pt-2 text-xs font-semibold text-cyan-300">
-              <div className="flex items-center space-x-1">
-                <Share className="w-4 h-4 text-pink-400" />
-                <span>1. Share</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <PlusSquare className="w-4 h-4 text-cyan-400" />
-                <span>2. Add to Home Screen</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setShowInstallGuide(false)}
-              className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-bold text-xs shadow-lg mt-2"
-            >
-              {lang === 'ko' ? '확인' : 'Got it'}
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Modern App Hero */}
       <div className="relative w-full h-[40vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-tr from-pink-900/40 via-purple-900/60 to-blue-900/40 z-10 mix-blend-overlay"></div>
