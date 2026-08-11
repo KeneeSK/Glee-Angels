@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Music, Mic, Disc, Award, ShieldCheck, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import loungeStageImg from '../assets/images/lounge_stage_neon_1786343408212.jpg';
+import ktvFamilyRoomImg from '../assets/images/ktv_family_room_1786343421575.jpg';
 
 interface AboutSectionProps {
   lang: Language;
@@ -107,7 +109,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
 
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/30 group">
                 <img
-                  src="/src/assets/images/lounge_stage_neon_1786343408212.jpg"
+                  src={loungeStageImg}
                   alt="1F Live Band Lounge Stage"
                   referrerPolicy="no-referrer"
                   className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
@@ -155,7 +157,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
 
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-pink-500/30 group">
                 <img
-                  src="/src/assets/images/ktv_family_room_1786343421575.jpg"
+                  src={ktvFamilyRoomImg}
                   alt="2F Family KTV Private Room"
                   referrerPolicy="no-referrer"
                   className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"

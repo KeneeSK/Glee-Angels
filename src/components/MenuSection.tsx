@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Language, MenuItem, MenuCategory } from '../types';
 import { translations } from '../data/translations';
 import { menuItems } from '../data/menuData';
+import signatureCocktailsImg from '../assets/images/signature_cocktails_1786343438551.jpg';
 import {
   Wine,
   Utensils,
@@ -175,7 +176,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
           </div>
           <div className="md:w-1/2 w-full h-56 sm:h-64 rounded-2xl overflow-hidden relative border border-zinc-800 shadow-inner group">
             <img
-              src="/src/assets/images/signature_cocktails_1786343438551.jpg"
+              src={signatureCocktailsImg}
               alt="Glee Angels Special Sets"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />

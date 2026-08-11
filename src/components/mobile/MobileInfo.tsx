@@ -59,9 +59,10 @@ export const MobileInfo: React.FC<{ lang: Language }> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Embedded Map */}
-        <div className="rounded-xl overflow-hidden h-64 border border-zinc-800 mt-6">
+        {/* Embedded Map with Quick Action Button */}
+        <div className="rounded-2xl overflow-hidden h-64 border border-zinc-800 mt-6 relative shadow-lg">
           <iframe
+            title="Glee Angels Google Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3850.8365767810255!2d120.58672707588865!3d15.167317062949259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f368a689aeeb%3A0x9e4f3dafd26301c8!2sGlee%20Angels!5e0!3m2!1sko!2sph!4v1786363968478!5m2!1sko!2sph"
             width="100%"
             height="100%"
@@ -70,6 +71,17 @@ export const MobileInfo: React.FC<{ lang: Language }> = ({ lang }) => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
+          <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/80 backdrop-blur-md border border-purple-500/30 flex items-center justify-between">
+            <span className="text-xs font-bold text-white">Fields Ave, Angeles City</span>
+            <a
+              href="https://maps.google.com/?q=Glee+Angels+Fields+Ave+Angeles+City"
+              target="_blank"
+              rel="noreferrer"
+              className="px-3 py-1 bg-purple-500 hover:bg-purple-400 text-white font-bold text-xs rounded-lg shadow-md transition-colors"
+            >
+              {lang === 'ko' ? '지도 앱으로 열기' : 'Open in Maps'}
+            </a>
+          </div>
         </div>
       </div>
     </div>

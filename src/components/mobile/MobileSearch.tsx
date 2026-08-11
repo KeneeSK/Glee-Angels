@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ChevronRight } from 'lucide-react';
+import { Search, ChevronRight, X } from 'lucide-react';
 import { Language } from '../../types';
 import { menuItems } from '../../data/menuData';
 import { dailyEntertainmentSchedule } from '../../data/scheduleData';
@@ -107,8 +107,16 @@ export const MobileSearch: React.FC<{ lang: Language }> = ({ lang }) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={lang === 'ko' ? "검색어를 입력하세요..." : "Type to search..."}
-          className="w-full bg-zinc-900/80 border border-zinc-700 rounded-xl py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
+          className="w-full bg-zinc-900/80 border border-zinc-700 rounded-xl py-3 pl-10 pr-10 text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
         />
+        {query && (
+          <button
+            onClick={() => setQuery('')}
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-500 hover:text-zinc-200"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       {query ? (

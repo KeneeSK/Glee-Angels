@@ -1,4 +1,7 @@
 import { WeeklyScheduleItem, DailyTimeSlot, GalleryItem } from '../types';
+import loungeStageImg from '../assets/images/lounge_stage_neon_1786343408212.jpg';
+import ktvFamilyRoomImg from '../assets/images/ktv_family_room_1786343421575.jpg';
+import signatureCocktailsImg from '../assets/images/signature_cocktails_1786343438551.jpg';
 
 export const weeklySchedule: WeeklyScheduleItem[] = [
   {
@@ -169,7 +172,7 @@ export const venueGallery: GalleryItem[] = [
     titleEn: 'Main Stage Live Band',
     titleKo: '1층 메인 무대 라이브 밴드',
     category: '1f',
-    image: '/src/assets/images/lounge_stage_neon_1786343408212.jpg',
+    image: loungeStageImg,
     captionEn: 'Vibrant concert lighting and dynamic audio acoustic setup at 1F Lounge.',
     captionKo: '화려한 레트로 네온 조명과 콘서트급 음향 시설을 갖춘 1층 라이브 무대.'
   },
@@ -178,7 +181,7 @@ export const venueGallery: GalleryItem[] = [
     titleEn: 'Family KTV Deluxe Suite',
     titleKo: '2층 패밀리 KTV 프라이빗 룸',
     category: '2f',
-    image: '/src/assets/images/ktv_family_room_1786343421575.jpg',
+    image: ktvFamilyRoomImg,
     captionEn: 'Soundproof luxury KTV room equipped with disco lighting and karaoke systems.',
     captionKo: '독립된 방음 설비와 최신 반주기, 화려한 미러볼이 갖춰진 2층 KTV 룸.'
   },
@@ -187,7 +190,7 @@ export const venueGallery: GalleryItem[] = [
     titleEn: 'Signature Neon Cocktails',
     titleKo: '시그니처 네온 칵테일 & 위스키',
     category: 'menu',
-    image: '/src/assets/images/signature_cocktails_1786343438551.jpg',
+    image: signatureCocktailsImg,
     captionEn: 'Handcrafted signature cocktails and premium spirit selections.',
     captionKo: '전문 바텐더가 제조하는 시그니처 네온 칵테일과 고급 위스키 라인업.'
   },
