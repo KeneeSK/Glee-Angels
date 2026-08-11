@@ -21,14 +21,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
   return (
     <section className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden bg-[#090a0f] z-0">
       {/* Required Spline 3D Embed Canvas Background (Absolute inside sticky container) */}
-      <div className="absolute inset-0 w-full h-full z-0 opacity-80 mix-blend-screen pointer-events-auto">
+      <div className="absolute inset-0 w-full h-full z-0 opacity-80 pointer-events-auto bg-[#090a0f]">
         <iframe
           src="https://my.spline.design/motiontrails-ctY4XGFXli9ZphuULM8xImuj/?v=refresh2026"
           frameBorder="0"
           width="100%"
           height="100%"
           title="Glee Angels Spline Motion Trails"
-          className="w-full h-full pointer-events-auto"
+          allow="autoplay; fullscreen"
+          className="w-full h-full pointer-events-auto border-0"
         ></iframe>
       </div>
 
