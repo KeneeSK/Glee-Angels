@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { Music, Menu, X, Globe } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
-import { Music, Sparkles, Phone, Calendar, Menu, X, Globe, MapPin } from 'lucide-react';
 
 interface NavbarProps {
   lang: Language;
   setLang: (lang: Language) => void;
-  onOpenReservation: (floor?: '1F' | '2F') => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation }) => {
+export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = translations[lang].nav;
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
-    setMobileMenuOpen(false);
-    const elem = document.getElementById(id);
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: 'smooth'
+      });
+      setMobileMenuOpen(false);
     }
   };
 
@@ -34,12 +36,13 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#090a0f]/90 backdrop-blur-md border-b border-cyan-500/20 py-3 shadow-lg shadow-cyan-950/20'
-          : 'bg-gradient-to-b from-[#090a0f]/90 via-[#090a0f]/50 to-transparent py-5'
+          ? 'bg-[#090a0f]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-lg shadow-black/50 py-3'
+          : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+          
           {/* Logo */}
           <div
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -94,14 +97,14 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation
             </button>
           </div>
 
-          {/* Right Actions: Language Switcher & Reserve CTA */}
+          {/* Right Actions: Language Switcher */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Live Indicator */}
             <div className="hidden xl:flex items-center space-x-2 bg-zinc-900/80 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-medium text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>{t.nowLive}</span>
             </div>
-
+            
             {/* Language Toggle Button */}
             <div className="bg-zinc-900 border border-zinc-800 p-1 rounded-full flex items-center space-x-1">
               <button
@@ -125,18 +128,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation
                 EN
               </button>
             </div>
-
-            {/* Book CTA */}
-            <button
-              onClick={() => onOpenReservation()}
-              className="relative inline-flex items-center justify-center p-0.5 text-xs font-bold rounded-full overflow-hidden group cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 group-hover:opacity-90 transition-opacity"></span>
-              <span className="relative px-4 py-2 rounded-full bg-[#090a0f] text-white flex items-center space-x-1.5 group-hover:bg-opacity-80 transition-all">
-                <Calendar className="w-3.5 h-3.5 text-pink-400" />
-                <span className="neon-text-pink">{t.reserve}</span>
-              </span>
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -149,7 +140,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation
               <Globe className="w-3.5 h-3.5 text-cyan-400" />
               <span>{lang.toUpperCase()}</span>
             </button>
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
@@ -190,30 +180,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, onOpenReservation
               className="text-left px-3 py-2 rounded-lg text-sm font-medium text-zinc-200 hover:bg-zinc-800/80 hover:text-cyan-400"
             >
               {t.location}
-            </button>
-          </div>
-
-          <div className="pt-2 border-t border-zinc-800 flex flex-col space-y-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenReservation('1F');
-              }}
-              className="w-full py-2.5 rounded-lg bg-cyan-600/20 border border-cyan-500/40 text-cyan-300 font-semibold text-sm flex items-center justify-center space-x-2"
-            >
-              <Music className="w-4 h-4 text-cyan-400" />
-              <span>{t.floor1} {t.reserve}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenReservation('2F');
-              }}
-              className="w-full py-2.5 rounded-lg bg-pink-600/20 border border-pink-500/40 text-pink-300 font-semibold text-sm flex items-center justify-center space-x-2"
-            >
-              <Sparkles className="w-4 h-4 text-pink-400" />
-              <span>{t.floor2} {t.reserve}</span>
             </button>
           </div>
         </div>

@@ -22,10 +22,10 @@ import {
 
 interface MenuSectionProps {
   lang: Language;
-  onOpenReservation: (floor?: '1F' | '2F', packageId?: string) => void;
+  
 }
 
-export const MenuSection: React.FC<MenuSectionProps> = ({ lang, onOpenReservation }) => {
+export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
   const [activeCategory, setActiveCategory] = useState<MenuCategory | 'highlights'>('sets');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'popular' | 'recommended'>('all');
@@ -548,7 +548,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang, onOpenReservatio
           </div>
 
           <button
-            onClick={() => onOpenReservation('1F')}
             className="shrink-0 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 hover:from-amber-400 hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-pink-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center space-x-2"
           >
             <CalendarCheck className="w-4 h-4" />
@@ -634,7 +633,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang, onOpenReservatio
               <button
                 onClick={() => {
                   setSelectedItem(null);
-                  onOpenReservation('1F');
                 }}
                 className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 hover:opacity-90 text-white text-xs font-extrabold shadow-lg transition-opacity cursor-pointer text-center"
               >

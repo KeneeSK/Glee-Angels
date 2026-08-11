@@ -5,10 +5,10 @@ import { Music, Calendar, Sparkles, MapPin, ChevronDown, Mic, Disc } from 'lucid
 
 interface HeroSectionProps {
   lang: Language;
-  onOpenReservation: (floor?: '1F' | '2F') => void;
+  
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ lang, onOpenReservation }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
   const t = translations[lang].hero;
 
   const scrollToSection = (id: string) => {
@@ -80,14 +80,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang, onOpenReservatio
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto pt-1">
-            <button
-              onClick={() => onOpenReservation()}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 hover:from-pink-500 hover:to-cyan-400 text-white font-bold text-sm shadow-lg shadow-pink-500/30 border border-pink-400/40 transform hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              <Calendar className="w-4 h-4 text-white" />
-              <span>{t.ctaReserve}</span>
-            </button>
-
             <button
               onClick={() => scrollToSection('performances')}
               className="w-full sm:w-auto px-6 py-3 rounded-xl glass-panel glass-panel-hover text-zinc-200 hover:text-white font-bold text-sm border border-cyan-500/30 flex items-center justify-center space-x-2 cursor-pointer"

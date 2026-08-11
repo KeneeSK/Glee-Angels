@@ -1,0 +1,17 @@
+{
+  "name": "Glee Angels Music Lounge",
+  "short_name": "Glee Angels",
+  "description": "Premier live music lounge and family KTV in Angeles City, Philippines.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090a0f",
+  "theme_color": "#090a0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon"
+    }
+  ]
+}

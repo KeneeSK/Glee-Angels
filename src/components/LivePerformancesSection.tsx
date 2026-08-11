@@ -6,10 +6,10 @@ import { Music, Mic, Users, Calendar, Clock, Flame, Sparkles, Radio, Play, Pause
 
 interface LivePerformancesSectionProps {
   lang: Language;
-  onOpenReservation: (floor?: '1F' | '2F') => void;
+  
 }
 
-export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = ({ lang, onOpenReservation }) => {
+export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = ({ lang }) => {
   const getTodayDayCode = (): DayOfWeek => {
     const days: DayOfWeek[] = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     const dayIndex = new Date().getDay();
@@ -168,7 +168,6 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                     </button>
                   )}
                   <button
-                    onClick={() => onOpenReservation('1F')}
                     className="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-sm shadow-md shadow-pink-500/20 flex items-center space-x-2 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
                   >
                     <Calendar className="w-4 h-4" />
@@ -263,7 +262,6 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                             onClick={(e) => {
                               e.stopPropagation();
                               setSelectedDay(item.day);
-                              onOpenReservation('1F');
                             }}
                             className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-pink-600 text-zinc-300 hover:text-white text-xs font-bold transition-all cursor-pointer"
                           >

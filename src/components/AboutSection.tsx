@@ -5,10 +5,10 @@ import { Music, Mic, Disc, Award, ShieldCheck, Sparkles, CheckCircle2, ArrowRigh
 
 interface AboutSectionProps {
   lang: Language;
-  onOpenReservation: (floor?: '1F' | '2F') => void;
+  
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onOpenReservation }) => {
+export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
   const [activeFloor, setActiveFloor] = useState<'1F' | '2F'>('1F');
   const t = translations[lang].about;
 
@@ -103,15 +103,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onOpenReservat
                   </div>
                 </div>
 
-                <div className="pt-4">
-                  <button
-                    onClick={() => onOpenReservation('1F')}
-                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-md shadow-cyan-500/30 flex items-center space-x-2 cursor-pointer"
-                  >
-                    <span>{t.f1Reserve}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
               </div>
 
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/30 group">
@@ -160,15 +151,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang, onOpenReservat
                   </div>
                 </div>
 
-                <div className="pt-4">
-                  <button
-                    onClick={() => onOpenReservation('2F')}
-                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-bold text-sm shadow-md shadow-pink-500/30 flex items-center space-x-2 cursor-pointer"
-                  >
-                    <span>{t.f2Reserve}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
               </div>
 
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-pink-500/30 group">

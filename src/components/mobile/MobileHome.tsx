@@ -1,14 +1,13 @@
 import React from 'react';
 import { Language } from '../../types';
 import { translations } from '../../data/translations';
-import { Mic, Disc, ArrowRight, Music, ShieldCheck, Sparkles, Award } from 'lucide-react';
+import { ArrowRight, Music, ShieldCheck, Sparkles, Award, Calendar, Wine } from 'lucide-react';
 
 interface MobileHomeProps {
   lang: Language;
-  onOpenReservation: (floor?: '1F' | '2F') => void;
 }
 
-export const MobileHome: React.FC<MobileHomeProps> = ({ lang, onOpenReservation }) => {
+export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
@@ -33,39 +32,27 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang, onOpenReservation 
         </div>
       </div>
 
-      {/* Quick Reserve Buttons */}
+      {/* Quick Info Alerts/Banners */}
       <div className="px-4 py-6 space-y-3">
-        <button
-          onClick={() => onOpenReservation('1F')}
-          className="w-full bg-gradient-to-r from-cyan-600 to-blue-700 rounded-xl p-4 flex items-center justify-between shadow-lg shadow-cyan-900/20 border border-cyan-500/30"
-        >
-          <div className="flex items-center space-x-3">
+        <div className="w-full bg-gradient-to-r from-cyan-900/40 to-blue-900/40 rounded-xl p-4 flex flex-col justify-between shadow-lg border border-cyan-500/30">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="bg-cyan-900/50 p-2 rounded-lg">
-              <Mic className="w-6 h-6 text-cyan-300" />
+              <Calendar className="w-5 h-5 text-cyan-300" />
             </div>
-            <div className="text-left">
-              <h3 className="font-bold text-white text-sm">{t.about.f1Reserve}</h3>
-              <p className="text-xs text-cyan-200 mt-0.5">{t.about.f1Title}</p>
-            </div>
+            <h3 className="font-bold text-white text-sm">{t.performance.sectionTitle}</h3>
           </div>
-          <ArrowRight className="w-5 h-5 text-cyan-300" />
-        </button>
+          <p className="text-xs text-cyan-200 mt-1">{t.hero.statBands}</p>
+        </div>
 
-        <button
-          onClick={() => onOpenReservation('2F')}
-          className="w-full bg-gradient-to-r from-pink-600 to-purple-700 rounded-xl p-4 flex items-center justify-between shadow-lg shadow-pink-900/20 border border-pink-500/30"
-        >
-          <div className="flex items-center space-x-3">
+        <div className="w-full bg-gradient-to-r from-pink-900/40 to-purple-900/40 rounded-xl p-4 flex flex-col justify-between shadow-lg border border-pink-500/30">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="bg-pink-900/50 p-2 rounded-lg">
-              <Disc className="w-6 h-6 text-pink-300" />
+              <Wine className="w-5 h-5 text-pink-300" />
             </div>
-            <div className="text-left">
-              <h3 className="font-bold text-white text-sm">{t.about.f2Reserve}</h3>
-              <p className="text-xs text-pink-200 mt-0.5">{t.about.f2Title}</p>
-            </div>
+            <h3 className="font-bold text-white text-sm">{t.menu.sectionTitle}</h3>
           </div>
-          <ArrowRight className="w-5 h-5 text-pink-300" />
-        </button>
+          <p className="text-xs text-pink-200 mt-1">{t.hero.statFloor1} & {t.hero.statFloor2}</p>
+        </div>
       </div>
 
       {/* Features */}
