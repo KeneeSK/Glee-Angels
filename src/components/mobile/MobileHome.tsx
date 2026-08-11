@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Language } from '../../types';
 import { translations } from '../../data/translations';
-import { ArrowRight, Music, ShieldCheck, Sparkles, Award, Calendar, Wine } from 'lucide-react';
+import { dailyEntertainmentSchedule, weeklySchedule } from '../../data/scheduleData';
+import { Calendar, Clock, Music, Mic2, Star, Download, X, PlayCircle, ChevronRight } from 'lucide-react';
 
 interface MobileHomeProps {
   lang: Language;
@@ -9,74 +10,214 @@ interface MobileHomeProps {
 
 export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
   const t = translations[lang];
+  const [showInstallBanner, setShowInstallBanner] = useState(true);
+
+  const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  const todayId = days[new Date().getDay()];
+  const todaySchedule = weeklySchedule.find(s => s.day === todayId) || weeklySchedule[0];
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Banner */}
-      <div className="relative h-64 w-full">
+    <div className="flex flex-col pb-6">
+      {/* PWA Install Banner */}
+      {showInstallBanner && (
+        <div className="bg-gradient-to-r from-cyan-600 to-blue-700 p-3 flex items-center justify-between shadow-lg z-50">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-md">
+              <Download className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-white text-sm font-bold leading-tight">
+                {lang === 'en' ? 'Install Glee Angels App' : '글리 앙헬레스 앱 설치'}
+              </p>
+              <p className="text-cyan-100 text-[10px]">
+                {lang === 'en' ? 'Add to Home Screen for quick access' : '홈 화면에 추가하여 빠르게 접속하세요'}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            <button 
+              className="bg-white text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-md"
+              onClick={() => alert(lang === 'en' ? 'Tap Share > Add to Home Screen on your device.' : '기기에서 공유 > 홈 화면에 추가를 탭하세요.')}
+            >
+              {lang === 'en' ? 'INSTALL' : '설치'}
+            </button>
+            <button onClick={() => setShowInstallBanner(false)}>
+              <X className="w-5 h-5 text-cyan-200" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modern App Hero */}
+      <div className="relative w-full h-[40vh] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-tr from-pink-900/40 via-purple-900/60 to-blue-900/40 z-10 mix-blend-overlay"></div>
         <img
           src="/src/assets/images/lounge_stage_neon_1786343408212.jpg"
           alt="Lounge Stage"
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/60 to-transparent z-10" />
         
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="inline-block px-2 py-1 bg-pink-500/20 border border-pink-500/50 rounded text-[10px] text-pink-300 font-bold mb-2">
-            {t.hero.badge}
+        <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+          <div className="inline-flex items-center space-x-1 px-2.5 py-1 bg-pink-500/20 border border-pink-500/50 rounded-full text-[10px] text-pink-300 font-bold mb-3 backdrop-blur-md uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse"></span>
+            <span>{t.hero.badge}</span>
           </div>
-          <h1 className="text-3xl font-black text-white font-mono leading-none tracking-tight">
-            GLEE ANGELS<br />
-            <span className="text-pink-400">MUSIC LOUNGE</span>
+          <h1 className="text-4xl font-black text-white font-mono leading-none tracking-tighter mb-2">
+            NIGHTLIFE<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
+              REDEFINED
+            </span>
           </h1>
+          <p className="text-zinc-300 text-xs font-medium">
+            {t.hero.slogan}
+          </p>
         </div>
       </div>
 
-      {/* Quick Info Alerts/Banners */}
-      <div className="px-4 py-6 space-y-3">
-        <div className="w-full bg-gradient-to-r from-cyan-900/40 to-blue-900/40 rounded-xl p-4 flex flex-col justify-between shadow-lg border border-cyan-500/30">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="bg-cyan-900/50 p-2 rounded-lg">
-              <Calendar className="w-5 h-5 text-cyan-300" />
+      {/* Main Content Area */}
+      <div className="px-4 -mt-2 relative z-30 space-y-8">
+        
+        {/* Today's Lineup Card */}
+        <div className="bg-[#12141d]/90 backdrop-blur-xl border border-zinc-800 rounded-2xl p-5 shadow-2xl shadow-black">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-2">
+              <Star className="w-5 h-5 text-amber-400" />
+              <h2 className="text-lg font-bold text-white tracking-tight">
+                {t.performance.todayBadge}
+              </h2>
             </div>
-            <h3 className="font-bold text-white text-sm">{t.performance.sectionTitle}</h3>
+            <span className="bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-lg text-xs font-bold border border-amber-500/20">
+              {lang === 'en' ? todaySchedule.dayFullEn : todaySchedule.dayFullKo}
+            </span>
           </div>
-          <p className="text-xs text-cyan-200 mt-1">{t.hero.statBands}</p>
-        </div>
 
-        <div className="w-full bg-gradient-to-r from-pink-900/40 to-purple-900/40 rounded-xl p-4 flex flex-col justify-between shadow-lg border border-pink-500/30">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="bg-pink-900/50 p-2 rounded-lg">
-              <Wine className="w-5 h-5 text-pink-300" />
+          <div className="space-y-4">
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20">
+                <Music className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold text-cyan-400 tracking-wider uppercase mb-0.5 block">
+                  {lang === 'en' ? 'Main Band' : '메인 밴드'}
+                </span>
+                <h3 className="text-xl font-black text-white leading-none mb-1">{todaySchedule.band}</h3>
+                <p className="text-xs text-zinc-400">{todaySchedule.bandGenre}</p>
+              </div>
             </div>
-            <h3 className="font-bold text-white text-sm">{t.menu.sectionTitle}</h3>
+
+            <div className="h-px w-full bg-gradient-to-r from-zinc-800 via-zinc-700 to-zinc-800"></div>
+
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shrink-0 shadow-lg shadow-pink-500/20">
+                <Mic2 className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold text-pink-400 tracking-wider uppercase mb-0.5 block">
+                  {lang === 'en' ? 'Solo Artist' : '솔로 아티스트'}
+                </span>
+                <h3 className="text-xl font-black text-white leading-none mb-1">{todaySchedule.solo}</h3>
+                <p className="text-xs text-zinc-400">{todaySchedule.soloGenre}</p>
+              </div>
+            </div>
           </div>
-          <p className="text-xs text-pink-200 mt-1">{t.hero.statFloor1} & {t.hero.statFloor2}</p>
         </div>
+
+        {/* Timeline Schedule */}
+        <div>
+          <div className="flex items-center space-x-2 mb-5 px-1">
+            <Clock className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-white tracking-tight">
+              {t.performance.dailyTab}
+            </h2>
+          </div>
+
+          <div className="relative border-l-2 border-zinc-800 ml-4 space-y-6">
+            {dailyEntertainmentSchedule.map((slot, idx) => (
+              <div key={idx} className="relative pl-6">
+                {/* Timeline Dot */}
+                <div className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-4 border-[#090a0f] ${
+                  slot.performerType.includes('Band') ? 'bg-cyan-400' :
+                  slot.performerType.includes('Dance') ? 'bg-pink-400' :
+                  slot.performerType.includes('Solo') ? 'bg-purple-400' : 'bg-zinc-500'
+                }`}></div>
+                
+                <div className="bg-zinc-900/40 rounded-xl p-3 border border-zinc-800/50">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <span className="font-mono text-sm font-bold text-zinc-200">{slot.time}</span>
+                    <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                      slot.performerType.includes('Band') ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' :
+                      slot.performerType.includes('Dance') ? 'bg-pink-500/20 text-pink-300 border border-pink-500/30' :
+                      slot.performerType.includes('Solo') ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : 
+                      'bg-zinc-700/50 text-zinc-300'
+                    }`}>
+                      {lang === 'en' ? slot.performerType : slot.performerTypeKo}
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    {lang === 'en' ? slot.descriptionEn : slot.descriptionKo}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Weekly Preview */}
+        <div>
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h2 className="text-lg font-bold text-white tracking-tight">
+              {t.performance.weeklyTab}
+            </h2>
+          </div>
+          
+          <div className="flex overflow-x-auto space-x-3 pb-4 snap-x hide-scrollbar">
+            {weeklySchedule.map((day) => (
+              <div key={day.day} className={`snap-start shrink-0 w-[80vw] sm:w-[300px] p-4 rounded-2xl border ${
+                day.day === todayId 
+                  ? 'bg-gradient-to-br from-cyan-900/40 to-blue-900/40 border-cyan-500/50 shadow-lg shadow-cyan-900/20' 
+                  : 'bg-zinc-900/60 border-zinc-800'
+              }`}>
+                <div className="flex justify-between items-center mb-3">
+                  <span className={`text-sm font-bold ${day.day === todayId ? 'text-cyan-400' : 'text-zinc-300'}`}>
+                    {lang === 'en' ? day.dayFullEn : dayFullKoToShort(day.dayFullKo)}
+                  </span>
+                  {day.highlight && (
+                    <span className="text-[10px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full border border-pink-500/30 font-bold uppercase">
+                      Special
+                    </span>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <Music className="w-4 h-4 text-zinc-500" />
+                    <span className="text-sm font-bold text-white">{day.band}</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Mic2 className="w-4 h-4 text-zinc-500" />
+                    <span className="text-sm font-medium text-zinc-400">{day.solo}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* Features */}
-      <div className="px-4 pb-6">
-        <h2 className="text-lg font-bold mb-4">{t.about.sectionTitle}</h2>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
-            <Music className="w-5 h-5 text-cyan-400 mb-2" />
-            <h4 className="font-bold text-xs text-white mb-1">{t.about.grid1Title}</h4>
-          </div>
-          <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
-            <Sparkles className="w-5 h-5 text-pink-400 mb-2" />
-            <h4 className="font-bold text-xs text-white mb-1">{t.about.grid2Title}</h4>
-          </div>
-          <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
-            <Award className="w-5 h-5 text-amber-400 mb-2" />
-            <h4 className="font-bold text-xs text-white mb-1">{t.about.grid3Title}</h4>
-          </div>
-          <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
-            <ShieldCheck className="w-5 h-5 text-purple-400 mb-2" />
-            <h4 className="font-bold text-xs text-white mb-1">{t.about.grid4Title}</h4>
-          </div>
-        </div>
-      </div>
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };
+
+function dayFullKoToShort(dayFull: string) {
+  return dayFull;
+}

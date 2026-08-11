@@ -185,12 +185,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
                 <p className="text-xs text-amber-400 font-extrabold tracking-wider uppercase">SPECIAL PACKAGES</p>
                 <p className="text-xs text-white font-medium">{lang === 'ko' ? '1F 라이브 스테이지 테이블 & 2F KTV 룸' : '1F Live Stage Tables & 2F KTV Rooms'}</p>
               </div>
-              <button
-                onClick={() => setActiveCategory('sets')}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-400 text-black hover:bg-amber-300 transition-colors cursor-pointer"
-              >
-                {lang === 'ko' ? '스페셜 세트 보기' : 'View Sets'}
-              </button>
             </div>
           </div>
         </div>
@@ -199,166 +193,22 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
         <div className="flex justify-center mb-8">
           <div className="bg-zinc-900/90 p-2 rounded-2xl border border-zinc-800/80 flex flex-wrap justify-center gap-1.5 sm:gap-2 shadow-xl backdrop-blur-lg max-w-5xl">
             {/* SPECIAL SETS (HIGHLIGHTED) */}
-            <button
-              onClick={() => setActiveCategory('sets')}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold flex items-center space-x-1.5 transition-all cursor-pointer border ${
-                activeCategory === 'sets'
-                  ? 'bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-black border-amber-300 shadow-xl shadow-amber-500/30'
-                  : 'text-amber-400 border-amber-500/40 bg-amber-950/30 hover:bg-amber-900/50 hover:text-amber-200'
-              }`}
-            >
-              <Crown className="w-4 h-4 text-amber-950 sm:text-amber-400 fill-amber-400" />
-              <span>{t.catSets}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'sets' ? 'bg-black/30 text-black' : 'bg-amber-950 text-amber-300'
-              }`}>
-                {counts.sets}
-              </span>
-            </button>
 
             {/* KOREAN FOOD */}
-            <button
-              onClick={() => setActiveCategory('korean')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'korean'
-                  ? 'bg-red-500 text-white shadow-lg shadow-red-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Soup className="w-4 h-4" />
-              <span>{t.catKorean}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'korean' ? 'bg-black/30 text-white' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.korean}
-              </span>
-            </button>
 
             {/* FILIPINO FOOD */}
-            <button
-              onClick={() => setActiveCategory('filipino')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'filipino'
-                  ? 'bg-yellow-500 text-black shadow-lg shadow-yellow-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Utensils className="w-4 h-4" />
-              <span>{t.catFilipino}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'filipino' ? 'bg-black/30 text-black' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.filipino}
-              </span>
-            </button>
 
             {/* SNACKS & BITES */}
-            <button
-              onClick={() => setActiveCategory('snacks')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'snacks'
-                  ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Utensils className="w-4 h-4" />
-              <span>{t.catSnacks}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'snacks' ? 'bg-black/30 text-white' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.snacks}
-              </span>
-            </button>
 
             {/* WESTERN & PIZZA */}
-            <button
-              onClick={() => setActiveCategory('western')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'western'
-                  ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Pizza className="w-4 h-4" />
-              <span>{t.catWestern}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'western' ? 'bg-black/30 text-black' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.western}
-              </span>
-            </button>
 
             {/* COCKTAILS */}
-            <button
-              onClick={() => setActiveCategory('cocktails')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'cocktails'
-                  ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <GlassWater className="w-4 h-4" />
-              <span>{t.catCocktails}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'cocktails' ? 'bg-black/30 text-black' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.cocktails}
-              </span>
-            </button>
 
             {/* BEER & LIQUOR */}
-            <button
-              onClick={() => setActiveCategory('liquor')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'liquor'
-                  ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Wine className="w-4 h-4" />
-              <span>{t.catLiquor}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'liquor' ? 'bg-black/30 text-white' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.liquor}
-              </span>
-            </button>
 
             {/* BEVERAGE & SHISHA */}
-            <button
-              onClick={() => setActiveCategory('nonalcoholic')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'nonalcoholic'
-                  ? 'bg-teal-500 text-black shadow-lg shadow-teal-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Coffee className="w-4 h-4" />
-              <span>{t.catNonalcoholic}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'nonalcoholic' ? 'bg-black/30 text-black' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.nonalcoholic}
-              </span>
-            </button>
 
             {/* HIGHLIGHTS */}
-            <button
-              onClick={() => setActiveCategory('highlights')}
-              className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-1.5 transition-all cursor-pointer ${
-                activeCategory === 'highlights'
-                  ? 'bg-gradient-to-r from-pink-500 to-amber-500 text-white shadow-lg shadow-pink-500/20 font-extrabold'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
-              }`}
-            >
-              <Flame className="w-4 h-4 text-amber-300" />
-              <span>{lang === 'ko' ? '인기 & 추천' : 'Popular'}</span>
-              <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                activeCategory === 'highlights' ? 'bg-black/30 text-white' : 'bg-zinc-800 text-zinc-400'
-              }`}>
-                {counts.highlights}
-              </span>
-            </button>
           </div>
         </div>
 
@@ -375,51 +225,16 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
               className="w-full bg-zinc-900/80 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs sm:text-sm rounded-xl pl-10 pr-9 py-2.5 focus:outline-none focus:border-amber-500 transition-colors"
             />
             {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white cursor-pointer"
-              >
-                <X className="w-4 h-4" />
+              <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 text-zinc-500 hover:text-zinc-300">
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
 
           {/* Quick Filter Badges */}
           <div className="flex items-center space-x-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
-            <button
-              onClick={() => setFilterType('all')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                filterType === 'all'
-                  ? 'bg-zinc-800 text-white border border-zinc-700'
-                  : 'bg-zinc-900/50 text-zinc-400 border border-zinc-800/60 hover:text-zinc-200'
-              }`}
-            >
-              {lang === 'ko' ? '전체 보기' : 'Show All'}
-            </button>
 
-            <button
-              onClick={() => setFilterType('popular')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center space-x-1 ${
-                filterType === 'popular'
-                  ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40'
-                  : 'bg-zinc-900/50 text-zinc-400 border border-zinc-800/60 hover:text-pink-400'
-              }`}
-            >
-              <Flame className="w-3.5 h-3.5 text-pink-400" />
-              <span>{lang === 'ko' ? '🔥 인기 히트' : '🔥 Popular Hits'}</span>
-            </button>
 
-            <button
-              onClick={() => setFilterType('recommended')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center space-x-1 ${
-                filterType === 'recommended'
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                  : 'bg-zinc-900/50 text-zinc-400 border border-zinc-800/60 hover:text-amber-400'
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>{lang === 'ko' ? '✨ 추천 아이템' : '✨ Recommended'}</span>
-            </button>
           </div>
         </div>
 
@@ -440,16 +255,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
             <p className="text-zinc-500 text-xs mt-1">
               {lang === 'ko' ? '검색어나 카테고리 필터를 변경해 보세요.' : 'Try adjusting your search or category filter.'}
             </p>
-            <button
-              onClick={() => {
-                setActiveCategory('sets');
-                setSearchQuery('');
-                setFilterType('all');
-              }}
-              className="mt-4 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-xs text-white rounded-xl transition-colors cursor-pointer font-semibold"
-            >
-              {lang === 'ko' ? '필터 초기화' : 'Reset Filters'}
-            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -532,28 +337,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
           </div>
         )}
 
-        {/* Bottom Reservation CTA Banner */}
-        <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-purple-950/60 via-zinc-900 to-amber-950/40 border border-zinc-800 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              {lang === 'ko'
-                ? 'VIP 테이블 & KTV 룸 사전 예약 안내'
-                : 'Enjoy Premier Drink & Dining in VIP Comfort'}
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-300 font-light max-w-xl">
-              {lang === 'ko'
-                ? '원하시는 무대 앞 VIP 테이블이나 2층 프라이빗 KTV 룸을 사전 예약하시면, 스페셜 세트 및 주문 메뉴가 사전에 완벽히 세팅됩니다.'
-                : 'Reserve your 1F Stage Front VIP table or 2F Private KTV Suite in advance. Our team will prepare your drinks & dishes ahead of arrival.'}
-            </p>
-          </div>
-
-          <button
-            className="shrink-0 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 hover:from-amber-400 hover:to-purple-500 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-pink-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center space-x-2"
-          >
-            <CalendarCheck className="w-4 h-4" />
-            <span>{lang === 'ko' ? '테이블 & KTV 예약하기' : 'Book VIP Reservation'}</span>
-          </button>
-        </div>
       </div>
 
       {/* Item Details Quick View Modal */}
@@ -561,12 +344,6 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
           <div className="bg-[#12141c] border border-zinc-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full relative shadow-2xl space-y-6">
             {/* Close Button */}
-            <button
-              onClick={() => setSelectedItem(null)}
-              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
 
             {/* Modal Header */}
             <div>
@@ -629,21 +406,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
             </div>
 
             {/* Modal Actions */}
-            <div className="pt-4 border-t border-zinc-800 flex items-center gap-3">
-              <button
-                onClick={() => {
-                  setSelectedItem(null);
-                }}
-                className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-pink-500 to-purple-600 hover:opacity-90 text-white text-xs font-extrabold shadow-lg transition-opacity cursor-pointer text-center"
-              >
-                {lang === 'ko' ? '이 메뉴와 함께 테이블 예약' : 'Book Table with this Menu'}
-              </button>
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold transition-colors cursor-pointer"
-              >
-                {lang === 'ko' ? '닫기' : 'Close'}
-              </button>
+            <div className="pt-4 border-t border-zinc-800 flex items-center gap-3"><button onClick={() => setSelectedItem(null)} className="flex-1 py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold transition-colors cursor-pointer text-center">{lang === "ko" ? "닫기" : "Close"}</button>
             </div>
           </div>
         </div>
