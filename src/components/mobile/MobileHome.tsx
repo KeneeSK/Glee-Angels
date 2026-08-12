@@ -4,6 +4,7 @@ import { translations } from '../../data/translations';
 import { dailyEntertainmentSchedule, weeklySchedule } from '../../data/scheduleData';
 import { Calendar, Clock, Music, Mic2, Star, ChevronRight, Table, CalendarDays, Flame, Sparkles, Info, X } from 'lucide-react';
 import loungeStageImg from '../../assets/images/lounge_stage_neon_1786343408212.jpg';
+import gleeAngelsStageMobileImg from '../../assets/images/glee_angels_stage_mobile_1786532891279.jpg';
 
 interface MobileHomeProps {
   lang: Language;
@@ -25,14 +26,15 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
   return (
     <div className="flex flex-col pb-6">
       {/* Modern App Hero */}
-      <div className="relative w-full h-[40vh] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-tr from-pink-900/40 via-purple-900/60 to-blue-900/40 z-10 mix-blend-overlay"></div>
+      <div className="relative w-full h-[45vh] overflow-hidden">
         <img
-          src={loungeStageImg}
-          alt="Lounge Stage"
-          className="absolute inset-0 w-full h-full object-cover scale-105"
+          src={gleeAngelsStageMobileImg}
+          alt="Glee Angels Stage"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-100 transition-transform duration-700"
+          referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/60 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/50 to-black/30 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-pink-900/30 via-transparent to-cyan-900/30 z-10 mix-blend-overlay" />
         
         <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
           <div className="inline-flex items-center space-x-1 px-2.5 py-1 bg-pink-500/20 border border-pink-500/50 rounded-full text-[10px] text-pink-300 font-bold mb-3 backdrop-blur-md uppercase tracking-wider">

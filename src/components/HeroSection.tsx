@@ -2,6 +2,7 @@ import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Music, Calendar, Sparkles, MapPin, ChevronDown, Mic, Disc } from 'lucide-react';
+import gleeAngelsStageMobileImg from '../assets/images/glee_angels_stage_mobile_1786532891279.jpg';
 
 interface HeroSectionProps {
   lang: Language;
@@ -24,11 +25,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#090a0f] z-0">
-      {/* Ambient Dark Neon Background Glows */}
-      <div className="absolute inset-0 z-0 bg-[#090a0f] overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-pink-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background Stage Image */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img
+          src={gleeAngelsStageMobileImg}
+          alt="Glee Angels Stage"
+          className="w-full h-full object-cover object-center opacity-45 scale-105"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/75 to-[#090a0f]/60" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
       {/* Lightweight Gradient Overlays for readability without blocking the 3D visual */}
