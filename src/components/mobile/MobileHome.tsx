@@ -3,6 +3,7 @@ import { Language, WeeklyScheduleItem } from '../../types';
 import { translations } from '../../data/translations';
 import { dailyEntertainmentSchedule, weeklySchedule } from '../../data/scheduleData';
 import { Calendar, Clock, Music, Mic2, Star, ChevronRight, Table, CalendarDays, Flame, Sparkles, Info, X } from 'lucide-react';
+import { motion } from 'motion/react';
 import loungeStageImg from '../../assets/images/lounge_stage_neon_1786343408212.jpg';
 import gleeAngelsStageMobileImg from '../../assets/images/glee_angels_stage_mobile_1786532891279.jpg';
 
@@ -37,16 +38,38 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
         <div className="absolute inset-0 bg-gradient-to-tr from-pink-900/30 via-transparent to-cyan-900/30 z-10 mix-blend-overlay" />
         
         <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
-          <div className="inline-flex items-center space-x-1 px-2.5 py-1 bg-pink-500/20 border border-pink-500/50 rounded-full text-[10px] text-pink-300 font-bold mb-3 backdrop-blur-md uppercase tracking-wider">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center space-x-1 px-2.5 py-1 bg-pink-500/20 border border-pink-500/50 rounded-full text-[10px] text-pink-300 font-bold mb-2.5 backdrop-blur-md uppercase tracking-wider"
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse"></span>
             <span>{t.hero.badge}</span>
-          </div>
-          <h1 className="text-4xl font-black text-white font-mono leading-none tracking-tighter mb-2">
-            NIGHTLIFE<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400">
-              REDEFINED
-            </span>
-          </h1>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.92, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-3xl sm:text-4xl font-black font-mono leading-none tracking-tight mb-2 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]"
+          >
+            <span className="text-white block">GLEE ANGELS</span>
+            <motion.span
+              animate={{
+                filter: [
+                  'drop-shadow(0 0 8px rgba(34, 211, 238, 0.8))',
+                  'drop-shadow(0 0 18px rgba(236, 72, 153, 0.9))',
+                  'drop-shadow(0 0 8px rgba(34, 211, 238, 0.8))'
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-amber-300 block text-2xl sm:text-3xl font-extrabold tracking-widest mt-1"
+            >
+              MUSIC LOUNGE
+            </motion.span>
+          </motion.h1>
+
           <p className="text-zinc-300 text-xs font-medium">
             {t.hero.slogan}
           </p>

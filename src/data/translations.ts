@@ -11,7 +11,7 @@ export const translations = {
       floor1: '1F 라이브 밴드',
       floor2: '2F 패밀리 KTV',
       nowLive: 'LIVE 공연 진행 중',
-      openHours: '매일 17:00 - 04:00'
+      openHours: '매일 19:00 - 03:00'
     },
     hero: {
       badge: '필리핀 앙헬레스 프리미엄 라이브 라운지 & KTV',
@@ -24,7 +24,7 @@ export const translations = {
       statBands: '7팀 최고급 라이브 밴드',
       statFloor1: '1F 메인 라이브 라운지',
       statFloor2: '2F 대형 패밀리 KTV',
-      statHours: '연중무휴 17:00 - 04:00'
+      statHours: '연중무휴 19:00 - 03:00'
     },
     about: {
       sectionTitle: 'ABOUT GLEE ANGELS',
@@ -56,7 +56,7 @@ export const translations = {
       sectionTitle: 'LIVE PERFORMANCES',
       mainHeading: '공연 안내 및 데일리 스케줄',
       weeklyTab: '주간 밴드 & 솔로 라인업',
-      dailyTab: '일일 타임스케줄 (17:00 ~ 04:00)',
+      dailyTab: '일일 타임스케줄 (19:00 ~ 03:00)',
       galleryTab: '무대 & 라운지 갤러리',
       bandTitle: '밴드 라이브',
       soloTitle: '솔로 아티스트',
@@ -118,18 +118,26 @@ export const translations = {
       addressValueEn: 'Western Fields Sports Bar, Fields Ave, Angeles City, Philippines, 2009',
       addressValueKo: 'Western Fields Sports Bar, Fields Ave, Angeles City, Philippines, 2009',
       hoursTitle: '영업 시간',
-      hoursValue: '월요일 ~ 일요일 (연중무휴) 17:00 - 04:00',
+      hoursValue: '월요일 ~ 일요일 (연중무휴) 19:00 - 03:00',
       contactTitle: '전화 및 메신저 문의',
       phone: '+63 917 123 4567',
       kakao: '카카오톡 ID: GleeAngeles',
       whatsapp: 'WhatsApp: +63 917 123 4567',
       email: 'reservation@gleeangelslounge.com',
-      formTitle: '온라인 문의 보내기',
-      formName: '성함',
-      formEmail: '이메일 주소',
+      formTitle: '다이렉트 메세지 보내기',
+      formCategoryLabel: '문의 유형 선택',
+      catTable: '1F VIP 테이블',
+      catKtv: '2F 패밀리 KTV',
+      catBand: '단체 / 이벤트 예약',
+      catGeneral: '일반 문의',
+      formName: '성함 / 예약자명',
+      formContact: '답변받을 메신저 ID / 연락처',
+      formEmail: '이메일 주소 (선택)',
       formMessage: '문의 내용',
-      formSubmit: '문의 보내기',
-      formSuccess: '문의가 전송되었습니다. 검토 후 신속히 답신 드리겠습니다.'
+      formSubmit: '메세지 전송하기',
+      formSuccess: '문의가 성공적으로 전송되었습니다! 담당 매니저가 지정하신 메신저로 신속히 연락드리겠습니다.',
+      quickMessengerTitle: '⚡ 1-Click 실시간 빠른 메신저 상담',
+      quickMessengerSub: '기다림 없는 빠른 답변! 원하시는 메신저 아이콘을 클릭하시면 담당자와 1:1 채팅이 바로 연결됩니다.'
     },
     footer: {
       about: '필리핀 앙헬레스의 프리미엄 라이브 뮤직 라운지 및 패밀리 KTV. 최고급 음향 시설과 라이브 공연으로 최고의 나이트라이프를 선사합니다.',
@@ -148,7 +156,7 @@ export const translations = {
       floor1: '1F Live Band',
       floor2: '2F Family KTV',
       nowLive: 'LIVE SHOW ON STAGE',
-      openHours: 'Daily 5:00 PM - 4:00 AM'
+      openHours: 'Daily 7:00 PM - 3:00 AM'
     },
     hero: {
       badge: 'Premier Live Music Lounge & Family KTV in Angeles City',
@@ -161,7 +169,7 @@ export const translations = {
       statBands: '7 High-Energy Live Bands',
       statFloor1: '1F Main Live Lounge',
       statFloor2: '2F Deluxe Family KTV',
-      statHours: 'Open Daily 5 PM - 4 AM'
+      statHours: 'Open Daily 7 PM - 3 AM'
     },
     about: {
       sectionTitle: 'ABOUT GLEE ANGELS',
@@ -193,7 +201,7 @@ export const translations = {
       sectionTitle: 'LIVE PERFORMANCES',
       mainHeading: 'Entertainment Schedule & Show Lineup',
       weeklyTab: 'Weekly Band & Solo Schedule',
-      dailyTab: 'Daily Time Schedule (5:00 PM - 4:00 AM)',
+      dailyTab: 'Daily Time Schedule (7:00 PM - 3:00 AM)',
       galleryTab: 'Stage & Venue Gallery',
       bandTitle: 'Featured Live Band',
       soloTitle: 'Solo Artist',
@@ -255,18 +263,26 @@ export const translations = {
       addressValueEn: 'Western Fields Sports Bar, Fields Ave, Angeles City, Philippines, 2009',
       addressValueKo: 'Western Fields Sports Bar, Fields Ave, Angeles City, Philippines, 2009',
       hoursTitle: 'Operating Hours',
-      hoursValue: 'Monday ~ Sunday (7 Days a Week) 5:00 PM - 4:00 AM',
+      hoursValue: 'Monday ~ Sunday (7 Days a Week) 7:00 PM - 3:00 AM',
       contactTitle: 'Phone & Direct Messaging',
       phone: '+63 917 123 4567',
       kakao: 'KakaoTalk ID: GleeAngeles',
       whatsapp: 'WhatsApp: +63 917 123 4567',
       email: 'reservation@gleeangelslounge.com',
       formTitle: 'Send Us a Direct Message',
-      formName: 'Your Name',
-      formEmail: 'Email Address',
-      formMessage: 'Inquiry / Notes',
-      formSubmit: 'Send Message',
-      formSuccess: 'Thank you! Your message has been sent successfully.'
+      formCategoryLabel: 'Select Inquiry Type',
+      catTable: '1F VIP Table',
+      catKtv: '2F Family KTV',
+      catBand: 'Group / Event Booking',
+      catGeneral: 'General Inquiry',
+      formName: 'Your Name / Guest Name',
+      formContact: 'Preferred Messenger ID / Phone Number',
+      formEmail: 'Email Address (Optional)',
+      formMessage: 'Message / Details',
+      formSubmit: 'Send Direct Message',
+      formSuccess: 'Thank you! Your inquiry has been sent successfully. Our concierge manager will reach out via your preferred messenger.',
+      quickMessengerTitle: '⚡ 1-Click Instant Messenger Concierge',
+      quickMessengerSub: 'Need an instant answer? Click any messenger button below to start a 1:1 direct chat with our team.'
     },
     footer: {
       about: 'The ultimate live music lounge and family KTV in Angeles City, Philippines. Unmatched acoustics, live band performances, and premier hospitality.',

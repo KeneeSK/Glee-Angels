@@ -2,11 +2,11 @@ import React from 'react';
 import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Music, Calendar, Sparkles, MapPin, ChevronDown, Mic, Disc } from 'lucide-react';
+import { motion } from 'motion/react';
 import gleeAngelsStageMobileImg from '../assets/images/glee_angels_stage_mobile_1786532891279.jpg';
 
 interface HeroSectionProps {
   lang: Language;
-  
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
@@ -38,15 +38,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
         <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
-      {/* Lightweight Gradient Overlays for readability without blocking the 3D visual */}
+      {/* Lightweight Gradient Overlays for readability */}
       <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#090a0f] via-[#090a0f]/60 to-transparent pointer-events-none z-10" />
       <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/75 to-transparent pointer-events-none z-10" />
 
-      {/* Content Container positioned cleanly inside 100vh */}
+      {/* Content Container */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col justify-between min-h-screen pt-24 pb-8 w-full pointer-events-none">
         {/* Top Header Block: Badge, Title & Subtitle */}
-        <div className="pt-2 flex flex-col items-center pointer-events-auto space-y-3">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-cyan-500/40 shadow-lg shadow-cyan-500/20">
+        <div className="pt-2 flex flex-col items-center pointer-events-auto space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-cyan-500/40 shadow-lg shadow-cyan-500/20"
+          >
             <Sparkles className="w-4 h-4 text-pink-400 animate-pulse" />
             <span className="text-xs sm:text-sm font-bold tracking-wide text-cyan-300">
               {t.badge}
@@ -55,22 +60,59 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-purple-400 drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)] font-mono">
-            GLEE ANGELS
-          </h1>
+          {/* Animated Main Title: GLEE ANGELS MUSIC LOUNGE */}
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+            className="font-black tracking-wider font-mono text-center leading-tight drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]"
+          >
+            <motion.span
+              animate={{
+                filter: [
+                  'drop-shadow(0 0 15px rgba(34, 211, 238, 0.7))',
+                  'drop-shadow(0 0 35px rgba(236, 72, 153, 0.85))',
+                  'drop-shadow(0 0 15px rgba(34, 211, 238, 0.7))'
+                ]
+              }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-purple-400 block"
+            >
+              GLEE ANGELS
+            </motion.span>
+            
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-amber-300 to-cyan-300 block mt-2"
+            >
+              MUSIC LOUNGE
+            </motion.span>
+          </motion.h1>
 
-          <p className="text-xs sm:text-base md:text-lg text-zinc-200 max-w-2xl mx-auto font-medium leading-relaxed px-5 py-2.5 rounded-2xl bg-black/50 backdrop-blur-md border border-white/10 shadow-xl">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xs sm:text-base md:text-lg text-zinc-200 max-w-2xl mx-auto font-medium leading-relaxed px-5 py-2.5 rounded-2xl bg-black/60 backdrop-blur-md border border-white/10 shadow-xl"
+          >
             {t.subtitle}
-          </p>
+          </motion.p>
         </div>
 
-        {/* Center flexible space allowing Spline 3D canvas visual to shine through */}
-        <div className="flex-1 pointer-events-none min-h-[100px]" />
+        {/* Center flexible space */}
+        <div className="flex-1 pointer-events-none min-h-[80px]" />
 
         {/* Bottom Hero Controls & Information Overlay */}
-        <div className="pointer-events-auto space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="pointer-events-auto space-y-4"
+        >
           {/* 1F / 2F Highlights Pill Bar */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs font-semibold">
             <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 backdrop-blur-md shadow-md shadow-cyan-500/20">
@@ -127,7 +169,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
               <ChevronDown className="w-5 h-5" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

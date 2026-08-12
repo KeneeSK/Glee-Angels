@@ -3,6 +3,7 @@ import { Language } from '../types';
 import { translations } from '../data/translations';
 import { Music, Mic, Disc, Award, ShieldCheck, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import loungeStageImg from '../assets/images/lounge_stage_neon_1786343408212.jpg';
+import gleeAngelsStageHorizontalImg from '../assets/images/glee_angels_stage_horizontal_1786537816563.jpg';
 import ktvFamilyRoomImg from '../assets/images/ktv_family_room_1786343421575.jpg';
 
 interface AboutSectionProps {
@@ -109,10 +110,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
 
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cyan-500/30 group">
                 <img
-                  src={loungeStageImg}
+                  src={gleeAngelsStageHorizontalImg}
                   alt="1F Live Band Lounge Stage"
                   referrerPolicy="no-referrer"
-                  className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-80 sm:h-96 object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl glass-panel border border-cyan-500/30">
@@ -120,7 +121,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                     Concert-grade Acoustics
                   </p>
                   <p className="text-sm font-semibold text-white">
-                    Live Bands Performing Every Night (5:00 PM - 4:00 AM)
+                    Live Bands Performing Every Night (7:00 PM - 3:00 AM)
                   </p>
                 </div>
               </div>

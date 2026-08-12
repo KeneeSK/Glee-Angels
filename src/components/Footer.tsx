@@ -97,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
                 <span>WhatsApp: +63 917 123 4567</span>
               </li>
               <li className="text-[11px] text-zinc-500 pt-1">
-                Open Daily: 5:00 PM - 4:00 AM
+                Open Daily: 7:00 PM - 3:00 AM
               </li>
             </ul>
           </div>

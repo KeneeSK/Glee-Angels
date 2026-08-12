@@ -291,12 +291,12 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                     GLEE DAILY ENTERTAINMENT SCHEDULE
                   </h3>
                   <p className="text-xs text-zinc-400 mt-1">
-                    Every night from 5:00 PM to 4:00 AM in Angeles City
+                    Every night from 7:00 PM to 3:00 AM in Angeles City
                   </p>
                 </div>
 
                 <div className="mt-4 md:mt-0 px-4 py-2 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
-                  7 HOURS NON-STOP ENTERTAINMENT
+                  8 HOURS NON-STOP ENTERTAINMENT
                 </div>
               </div>
 

@@ -1,5 +1,6 @@
 import { WeeklyScheduleItem, DailyTimeSlot, GalleryItem } from '../types';
 import loungeStageImg from '../assets/images/lounge_stage_neon_1786343408212.jpg';
+import gleeAngelsStageHorizontalImg from '../assets/images/glee_angels_stage_horizontal_1786537816563.jpg';
 import ktvFamilyRoomImg from '../assets/images/ktv_family_room_1786343421575.jpg';
 import signatureCocktailsImg from '../assets/images/signature_cocktails_1786343438551.jpg';
 
@@ -101,19 +102,11 @@ export const weeklySchedule: WeeklyScheduleItem[] = [
 
 export const dailyEntertainmentSchedule: DailyTimeSlot[] = [
   {
-    time: '5:00 - 7:00 PM',
-    performerType: 'Free & Karaoke Time',
-    performerTypeKo: '프리 & 가라오케 타임',
-    descriptionEn: 'Lounge opens! Enjoy food and drinks while listening to music. Guests are welcome to use the open karaoke machine before the live bands begin.',
-    descriptionKo: '매장 오픈! 음악과 함께 맛있는 주류와 안주를 즐기며 자유롭게 노래방 기기를 이용할 수 있는 프리 오픈 타임입니다.',
-    graphicType: 'vocal'
-  },
-  {
     time: '7:00 - 8:30 PM',
     performerType: 'Solo',
-    performerTypeKo: '솔로 보컬 / 아쿠스틱',
-    descriptionEn: 'Warm acoustic opener setting a relaxed lounge atmosphere as guests arrive.',
-    descriptionKo: '은은한 감성 아쿠스틱 기타와 연주로 분위기를 여는 오픈 스테이지.',
+    performerTypeKo: '솔로 보컬 / 아쿠스틱 (오픈 세트)',
+    descriptionEn: 'Warm acoustic opener setting a relaxed lounge atmosphere as guests arrive at 7 PM.',
+    descriptionKo: '저녁 7시 매장 오픈과 함께 은은한 감성 아쿠스틱 기타와 라이브로 분위기를 여는 오픈 스테이지.',
     graphicType: 'acoustic'
   },
   {
@@ -149,7 +142,7 @@ export const dailyEntertainmentSchedule: DailyTimeSlot[] = [
     graphicType: 'rock'
   },
   {
-    time: '1:00 - 2:30 AM',
+    time: '1:00 - 2:00 AM',
     performerType: 'Solo',
     performerTypeKo: '심야 솔로 라이브',
     descriptionEn: 'Late-night chill lounge session with soul and acoustic melodies.',
@@ -157,11 +150,11 @@ export const dailyEntertainmentSchedule: DailyTimeSlot[] = [
     graphicType: 'acoustic'
   },
   {
-    time: '2:30 - 4:00 AM',
+    time: '2:00 - 3:00 AM',
     performerType: 'Band',
     performerTypeKo: '미드나잇 파이널 밴드 세트',
-    descriptionEn: 'Grand finale party set rocking the house until closing time at 4 AM.',
-    descriptionKo: '새벽 4시 마감까지 라운지를 열광의 도가니로 만드는 파이널 록 세트.',
+    descriptionEn: 'Grand finale party set rocking the house until closing time at 3 AM.',
+    descriptionKo: '새벽 3시 마감까지 라운지를 열광의 도가니로 만드는 파이널 록 세트.',
     graphicType: 'dj'
   }
 ];
@@ -172,7 +165,7 @@ export const venueGallery: GalleryItem[] = [
     titleEn: 'Main Stage Live Band',
     titleKo: '1층 메인 무대 라이브 밴드',
     category: '1f',
-    image: loungeStageImg,
+    image: gleeAngelsStageHorizontalImg,
     captionEn: 'Vibrant concert lighting and dynamic audio acoustic setup at 1F Lounge.',
     captionKo: '화려한 레트로 네온 조명과 콘서트급 음향 시설을 갖춘 1층 라이브 무대.'
   },
