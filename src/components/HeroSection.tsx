@@ -24,17 +24,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#090a0f] z-0">
-      {/* Spline 3D Embed Canvas Background */}
-      <div className="absolute inset-0 w-full h-full z-0 opacity-90 pointer-events-auto bg-[#090a0f]">
-        <iframe
-          src="https://my.spline.design/motiontrails-ctY4XGFXli9ZphuULM8xImuj/?v=refresh2026"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          title="Glee Angels Spline Motion Trails"
-          allow="autoplay; fullscreen"
-          className="w-full h-full pointer-events-auto border-0"
-        ></iframe>
+      {/* Ambient Dark Neon Background Glows */}
+      <div className="absolute inset-0 z-0 bg-[#090a0f] overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-pink-500/10 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
       {/* Lightweight Gradient Overlays for readability without blocking the 3D visual */}
