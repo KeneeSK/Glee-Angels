@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Search, ChevronRight, X } from 'lucide-react';
 import { Language } from '../../types';
-import { menuItems } from '../../data/menuData';
+import { useMenuData } from '../../hooks/useMenuData';
 import { dailyEntertainmentSchedule } from '../../data/scheduleData';
 
 export const MobileSearch: React.FC<{ lang: Language }> = ({ lang }) => {
   const [query, setQuery] = useState('');
+  const { menuItems } = useMenuData();
 
   const searchResults = () => {
     if (!query) return null;

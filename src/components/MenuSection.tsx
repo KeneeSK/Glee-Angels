@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Language, MenuItem, MenuCategory } from '../types';
 import { translations } from '../data/translations';
-import { menuItems } from '../data/menuData';
+import { useMenuData } from '../hooks/useMenuData';
+import { MenuAdminModal } from './MenuAdminModal';
 import signatureCocktailsImg from '../assets/images/signature_cocktails_1786343438551.jpg';
 import {
   Wine,
@@ -18,7 +19,8 @@ import {
   Beer,
   Pizza,
   Coffee,
-  Soup
+  Soup,
+  Settings
 } from 'lucide-react';
 
 interface MenuSectionProps {
@@ -31,6 +33,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'popular' | 'recommended'>('all');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+
+  const { menuItems, saveMenu } = useMenuData();
 
   const t = translations[lang].menu;
 
@@ -47,7 +52,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
       nonalcoholic: menuItems.filter((i) => i.category === 'nonalcoholic').length,
       highlights: menuItems.filter((i) => i.isPopular || i.isRecommended).length,
     };
-  }, []);
+  }, [menuItems]);
 
   // Filter items based on activeCategory, searchQuery, and filterType
   const filteredItems = useMemo(() => {
@@ -73,7 +78,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
 
       return true;
     });
-  }, [activeCategory, filterType, searchQuery]);
+  }, [menuItems, activeCategory, filterType, searchQuery]);
 
   const getCategoryBadge = (cat: MenuCategory) => {
     switch (cat) {
@@ -130,7 +135,15 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12 relative">
+          <button 
+            onClick={() => setIsAdminOpen(true)}
+            className="absolute -top-10 right-0 sm:top-0 sm:right-0 px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-mono font-bold flex items-center space-x-2 transition-colors z-20 shadow-lg"
+          >
+            <Settings className="w-4 h-4" />
+            <span>Manage Menu</span>
+          </button>
+          
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-950/80 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <Crown className="w-4 h-4 text-amber-400" />
             <span>{t.sectionTitle}</span>
@@ -393,6 +406,13 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
           <div className="bg-[#12141c] border border-zinc-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full relative shadow-2xl space-y-6">
             {/* Close Button */}
 
+            {selectedItem.image && (
+              <div className="w-full h-48 sm:h-56 -mt-6 -mx-6 sm:-mt-8 sm:-mx-8 mb-6 rounded-t-3xl overflow-hidden relative border-b border-zinc-800 shrink-0">
+                <img src={selectedItem.image} alt={selectedItem.nameEn} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12141c] to-transparent"></div>
+              </div>
+            )}
+
             {/* Modal Header */}
             <div>
               <span className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider inline-block mb-3 ${getCategoryBadge(selectedItem.category).style}`}>
@@ -459,6 +479,14 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
           </div>
         </div>
       )}
+
+      {/* Admin Modal */}
+      <MenuAdminModal 
+        isOpen={isAdminOpen} 
+        onClose={() => setIsAdminOpen(false)} 
+        menuItems={menuItems} 
+        onSave={saveMenu} 
+      />
     </section>
   );
 };

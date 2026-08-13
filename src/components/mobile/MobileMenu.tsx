@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Language, MenuItem } from '../../types';
 import { translations } from '../../data/translations';
-import { menuItems } from '../../data/menuData';
+import { useMenuData } from '../../hooks/useMenuData';
 import { Flame, Sparkles, X } from 'lucide-react';
 
 export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
@@ -9,7 +9,9 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
 
-  const categories = Array.from(new Set(menuItems.map(item => item.category)));
+  const { menuItems } = useMenuData();
+
+  const categories: string[] = Array.from(new Set(menuItems.map(item => item.category)));
 
   const getCatLabel = (cat: string) => {
     switch (cat) {
@@ -109,13 +111,21 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="bg-[#12141d] border border-amber-500/40 rounded-3xl p-6 max-w-sm w-full space-y-4 relative shadow-2xl animate-in zoom-in-95">
+            
+            {selectedItem.image && (
+              <div className="w-full h-40 -mt-6 -mx-6 mb-4 rounded-t-3xl overflow-hidden relative">
+                <img src={selectedItem.image} alt={selectedItem.nameEn} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12141d] to-transparent"></div>
+              </div>
+            )}
+            
             <button
               onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 p-1 rounded-full bg-zinc-800 text-zinc-400 hover:text-white"
+              className="absolute top-4 right-4 p-1 rounded-full bg-zinc-800/80 backdrop-blur text-zinc-400 hover:text-white z-10"
             >
               <X className="w-5 h-5" />
             </button>
-            <div>
+            <div className={selectedItem.image ? "mt-2" : ""}>
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
                 {getCatLabel(selectedItem.category)}
               </span>
