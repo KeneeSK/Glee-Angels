@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MenuItem, MenuCategory } from '../types';
-import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight, Upload } from 'lucide-react';
 
 interface MenuAdminModalProps {
   isOpen: boolean;
@@ -19,6 +19,7 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<MenuCategory | 'all'>('all');
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -29,6 +30,7 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
       setEditingItemId(null);
       setSearchQuery('');
       setSelectedCategory('all');
+      setImageError(null);
     }
   }, [isOpen, menuItems]);
 
@@ -59,6 +61,28 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
 
   const handleUpdate = (id: string, field: keyof MenuItem, value: any) => {
     setItems(items.map(item => item.id === id ? { ...item, [field]: value } : item));
+  };
+
+  const handleImageUpload = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    setImageError(null);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Check file size (limit to 1MB to save localStorage space)
+    if (file.size > 1024 * 1024) {
+      setImageError("Image is too large. Please upload an image smaller than 1MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      handleUpdate(id, 'image', base64String);
+    };
+    reader.onerror = () => {
+      setImageError("Failed to read the file.");
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDelete = (id: string, e?: React.MouseEvent) => {
@@ -303,8 +327,23 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
                   </div>
 
                   <div className="space-y-1.5 md:col-span-2">
-                    <label className="text-[10px] uppercase font-bold text-zinc-500 ml-1">Image URL</label>
-                    <input type="text" value={editingItem.image || ''} onChange={e => handleUpdate(editingItem.id, 'image', e.target.value)} placeholder="https://..." className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyan-500 focus:outline-none focus:bg-zinc-900 transition-colors" />
+                    <label className="text-[10px] uppercase font-bold text-zinc-500 ml-1">Menu Image</label>
+                    <div className="flex items-center space-x-4">
+                      <label className="flex items-center justify-center px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl cursor-pointer transition-colors text-sm font-bold border border-zinc-700 shrink-0">
+                        <Upload className="w-4 h-4 mr-2" />
+                        <span className="hidden sm:inline">Upload File</span>
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          className="hidden" 
+                          onChange={(e) => handleImageUpload(editingItem.id, e)}
+                        />
+                      </label>
+                      <span className="text-xs text-zinc-600 hidden sm:inline">or URL</span>
+                      <input type="text" value={editingItem.image || ''} onChange={e => handleUpdate(editingItem.id, 'image', e.target.value)} placeholder="https://..." className="flex-1 bg-zinc-900/50 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:border-cyan-500 focus:outline-none focus:bg-zinc-900 transition-colors min-w-0" />
+                    </div>
+                    {imageError && <p className="text-red-400 text-[10px] ml-1 mt-1">{imageError}</p>}
+                    <p className="text-zinc-500 text-[10px] ml-1 mt-1">Note: Uploaded files are converted to Base64 and stored in local storage. Please use images smaller than 1MB.</p>
                   </div>
 
                   <div className="space-y-1.5 md:col-span-2">
