@@ -47,7 +47,8 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'glee1234') {
+    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'glee1234';
+    if (password === adminPassword) {
       setIsAuth(true);
       setError(false);
     } else {
