@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Language, DayOfWeek, GalleryItem } from '../types';
 import { translations } from '../data/translations';
-import { weeklySchedule, dailyEntertainmentSchedule, venueGallery } from '../data/scheduleData';
-import { Music, Mic, Users, Calendar, Clock, Flame, Sparkles, Radio, Play, Pause, Volume2, X, ZoomIn } from 'lucide-react';
+import { dailyEntertainmentSchedule, venueGallery } from '../data/scheduleData';
+import { useScheduleData } from '../hooks/useScheduleData';
+import { ScheduleAdminModal } from './ScheduleAdminModal';
+import { Music, Mic, Users, Calendar, Clock, Flame, Sparkles, Radio, Play, Pause, Volume2, X, ZoomIn, Settings } from 'lucide-react';
 
 interface LivePerformancesSectionProps {
   lang: Language;
-  
 }
 
 export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = ({ lang }) => {
@@ -21,11 +22,19 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>(() => todayCode);
   const [galleryFilter, setGalleryFilter] = useState<'all' | '1f' | '2f' | 'bands' | 'menu'>('all');
   const [activeLightboxImage, setActiveLightboxImage] = useState<GalleryItem | null>(null);
+  
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const { schedule, saveSchedule } = useScheduleData();
 
   const t = translations[lang].performance;
 
   // Find active schedule item for selected day
-  const currentSchedule = weeklySchedule.find((item) => item.day === selectedDay) || weeklySchedule[0];
+  const currentSchedule = schedule.find((item) => item.day === selectedDay) || schedule[0];
+
+  // Fallback if schedule is completely empty
+  if (!currentSchedule) {
+    return null;
+  }
 
   // Filter gallery
   const filteredGallery = galleryFilter === 'all'
@@ -38,6 +47,16 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex justify-end mb-4">
+          <button 
+            onClick={() => setIsAdminOpen(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-zinc-900/50 hover:bg-zinc-800 border border-zinc-800 rounded-xl text-zinc-400 hover:text-white transition-colors text-xs font-bold"
+          >
+            <Settings className="w-3.5 h-3.5" />
+            <span>Manage Schedule</span>
+          </button>
+        </div>
+
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-pink-950/80 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-widest uppercase mb-4">
@@ -99,7 +118,7 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
           <div className="space-y-8">
             {/* Day Selector Buttons with TODAY indicator */}
             <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
-              {weeklySchedule.map((item) => {
+              {schedule.map((item) => {
                 const isSelected = item.day === selectedDay;
                 const isToday = item.day === todayCode;
                 return (
@@ -118,6 +137,9 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                       <span className="mb-1 px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-cyan-400 text-black uppercase tracking-tight shadow-sm animate-pulse">
                         {lang === 'ko' ? '오늘' : 'TODAY'}
                       </span>
+                    )}
+                    {item.date && (
+                      <span className="text-[10px] font-bold text-pink-400 mb-0.5 whitespace-nowrap">{item.date}</span>
                     )}
                     <p className="text-xs sm:text-sm font-mono font-bold tracking-wider">{item.day}</p>
                     <p className="text-[10px] mt-0.5 opacity-80 hidden sm:block">
@@ -225,7 +247,7 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-800 text-sm">
-                  {weeklySchedule.map((item) => {
+                  {schedule.map((item) => {
                     const isTodayRow = item.day === todayCode;
                     return (
                       <tr
@@ -236,10 +258,13 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                         }`}
                       >
                         <td className="py-4 px-6 font-bold text-white font-mono flex items-center space-x-2">
-                          <span className={`w-2 h-2 rounded-full ${item.day === selectedDay ? 'bg-pink-500' : isTodayRow ? 'bg-cyan-400' : 'bg-zinc-700'}`} />
-                          <span>{item.day} ({lang === 'ko' ? item.dayFullKo : item.dayFullEn})</span>
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${item.day === selectedDay ? 'bg-pink-500' : isTodayRow ? 'bg-cyan-400' : 'bg-zinc-700'}`} />
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
+                            {item.date && <span className="text-pink-400 text-xs sm:text-sm">{item.date}</span>}
+                            <span>{item.day} ({lang === 'ko' ? item.dayFullKo : item.dayFullEn})</span>
+                          </div>
                           {isTodayRow && (
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-cyan-400 text-black uppercase tracking-tight ml-2">
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-cyan-400 text-black uppercase tracking-tight ml-2 shrink-0">
                               {lang === 'ko' ? '오늘' : 'TODAY'}
                             </span>
                           )}
@@ -418,6 +443,13 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
           </div>
         </div>
       )}
+      
+      <ScheduleAdminModal 
+        isOpen={isAdminOpen} 
+        onClose={() => setIsAdminOpen(false)} 
+        scheduleItems={schedule} 
+        onSave={saveSchedule} 
+      />
     </section>
   );
 };

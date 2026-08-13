@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MenuItem, MenuCategory } from '../types';
-import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight, Upload } from 'lucide-react';
+import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight, Upload, Key } from 'lucide-react';
 
 interface MenuAdminModalProps {
   isOpen: boolean;
@@ -21,6 +21,12 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
 
+  // Password Change State
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordChangeMessage, setPasswordChangeMessage] = useState<{type: 'error' | 'success', text: string} | null>(null);
+
   useEffect(() => {
     if (isOpen) {
       setItems([...menuItems]);
@@ -31,6 +37,10 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
       setSearchQuery('');
       setSelectedCategory('all');
       setImageError(null);
+      setIsChangingPassword(false);
+      setNewPassword('');
+      setConfirmPassword('');
+      setPasswordChangeMessage(null);
     }
   }, [isOpen, menuItems]);
 
@@ -49,7 +59,8 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'glee1234';
+    const storedPassword = localStorage.getItem('glee_admin_password');
+    const adminPassword = storedPassword || import.meta.env.VITE_ADMIN_PASSWORD || 'glee1234';
     if (password === adminPassword) {
       setIsAuth(true);
       setError(false);
@@ -57,6 +68,28 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
       setError(true);
       setPassword('');
     }
+  };
+
+  const handleChangePassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      setPasswordChangeMessage({ type: 'error', text: 'Passwords do not match' });
+      return;
+    }
+    if (newPassword.length < 4) {
+      setPasswordChangeMessage({ type: 'error', text: 'Password must be at least 4 characters' });
+      return;
+    }
+    
+    localStorage.setItem('glee_admin_password', newPassword);
+    setPasswordChangeMessage({ type: 'success', text: 'Password changed successfully!' });
+    
+    setTimeout(() => {
+      setIsChangingPassword(false);
+      setNewPassword('');
+      setConfirmPassword('');
+      setPasswordChangeMessage(null);
+    }, 1500);
   };
 
   const handleUpdate = (id: string, field: keyof MenuItem, value: any) => {
@@ -151,6 +184,61 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
 
   const editingItem = editingItemId ? items.find(i => i.id === editingItemId) : null;
 
+  if (isChangingPassword) {
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="bg-[#12141c] border border-zinc-800 rounded-3xl w-full max-w-sm p-8 flex flex-col relative shadow-2xl">
+          <button onClick={() => {
+            setIsChangingPassword(false);
+            setNewPassword('');
+            setConfirmPassword('');
+            setPasswordChangeMessage(null);
+          }} className="absolute top-4 right-4 p-2 text-zinc-500 hover:text-white rounded-full transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+          
+          <div className="flex flex-col items-center justify-center space-y-4 mb-6">
+            <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center">
+              <Key className="w-5 h-5 text-cyan-400" />
+            </div>
+            <div className="text-center">
+              <h3 className="text-lg font-bold text-white font-mono">Change Password</h3>
+              <p className="text-xs text-zinc-400 mt-1">Set a new password for admin access</p>
+            </div>
+          </div>
+
+          <form onSubmit={handleChangePassword} className="space-y-4">
+            <div>
+              <input 
+                type="password" 
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="New Password" 
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500 transition-colors mb-4"
+                autoFocus
+              />
+              <input 
+                type="password" 
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm Password" 
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-cyan-500 transition-colors"
+              />
+              {passwordChangeMessage && (
+                <p className={`text-[10px] mt-2 px-1 font-bold ${passwordChangeMessage.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                  {passwordChangeMessage.text}
+                </p>
+              )}
+            </div>
+            <button type="submit" className="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-colors">
+              Save New Password
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
       <div className="bg-zinc-950 border border-zinc-800 rounded-3xl w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden shadow-2xl">
@@ -178,10 +266,15 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
           </div>
           <div className="flex items-center space-x-3">
             {!editingItem && (
-              <button onClick={handleAdd} className="flex items-center space-x-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors text-sm font-bold">
-                <Plus className="w-4 h-4" />
-                <span className="hidden sm:inline">Add Item</span>
-              </button>
+              <>
+                <button onClick={() => setIsChangingPassword(true)} className="flex items-center space-x-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors text-sm font-bold" title="Change Password">
+                  <Key className="w-4 h-4" />
+                </button>
+                <button onClick={handleAdd} className="flex items-center space-x-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors text-sm font-bold">
+                  <Plus className="w-4 h-4" />
+                  <span className="hidden sm:inline">Add Item</span>
+                </button>
+              </>
             )}
             <button 
               onClick={() => { onSave(items); onClose(); }}

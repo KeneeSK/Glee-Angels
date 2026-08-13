@@ -4,6 +4,7 @@ export type DayOfWeek = 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN';
 
 export interface WeeklyScheduleItem {
   day: DayOfWeek;
+  date?: string; // Optional specific date e.g. "12/24"
   dayFullEn: string;
   dayFullKo: string;
   band: string;

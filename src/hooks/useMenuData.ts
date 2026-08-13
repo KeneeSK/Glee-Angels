@@ -3,23 +3,22 @@ import { MenuItem } from '../types';
 import { menuItems as initialData } from '../data/menuData';
 
 export const useMenuData = () => {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-
-  useEffect(() => {
+  const [menuItems, setMenuItems] = useState<MenuItem[]>(() => {
     const stored = localStorage.getItem('glee_menu_items');
     if (stored) {
-      setMenuItems(JSON.parse(stored));
-    } else {
-      setMenuItems(initialData);
-      localStorage.setItem('glee_menu_items', JSON.stringify(initialData));
+      return JSON.parse(stored);
     }
+    return initialData;
+  });
 
+  useEffect(() => {
     const handleStorageChange = () => {
       const updated = localStorage.getItem('glee_menu_items');
       if (updated) {
         setMenuItems(JSON.parse(updated));
       }
     };
+
     window.addEventListener('storage', handleStorageChange);
     // Custom event for same-window updates
     window.addEventListener('menu-updated', handleStorageChange);
