@@ -167,12 +167,6 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                       <span>{lang === 'ko' ? '오늘 공연 보기' : 'View Today'} ({todayCode})</span>
                     </button>
                   )}
-                  <button
-                    className="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-500 text-white font-bold text-sm shadow-md shadow-pink-500/20 flex items-center space-x-2 hover:opacity-90 transition-opacity cursor-pointer shrink-0"
-                  >
-                    <Calendar className="w-4 h-4" />
-                    <span>Book Table For {currentSchedule.day}</span>
-                  </button>
                 </div>
               </div>
 
@@ -227,8 +221,7 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                   <tr className="bg-zinc-900/90 text-zinc-400 text-xs font-mono uppercase border-b border-zinc-800">
                     <th className="py-4 px-6 font-bold">Day (요일)</th>
                     <th className="py-4 px-6 font-bold text-cyan-400">Band (밴드)</th>
-                    <th className="py-4 px-6 font-bold text-pink-400">Solo Vocal (솔로)</th>
-                    <th className="py-4 px-6 font-bold text-right">Action</th>
+                    <th className="py-4 px-6 font-bold text-pink-400 text-right">Solo Vocal (솔로)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-800 text-sm">
@@ -254,19 +247,8 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                         <td className="py-4 px-6 font-bold text-cyan-300 font-mono">
                           {item.band}
                         </td>
-                        <td className="py-4 px-6 font-bold text-pink-300 font-mono">
+                        <td className="py-4 px-6 font-bold text-pink-300 font-mono text-right">
                           {item.solo}
-                        </td>
-                        <td className="py-4 px-6 text-right">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedDay(item.day);
-                            }}
-                            className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-pink-600 text-zinc-300 hover:text-white text-xs font-bold transition-all cursor-pointer"
-                          >
-                            Book {item.day}
-                          </button>
                         </td>
                       </tr>
                     );
