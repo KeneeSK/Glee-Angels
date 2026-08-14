@@ -91,6 +91,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
               </h2>
             </div>
             <span className="bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-lg text-sm font-bold border border-amber-500/20">
+              {todaySchedule.date && <span className="mr-1.5">{todaySchedule.date}</span>}
               {lang === 'en' ? todaySchedule.dayFullEn : todaySchedule.dayFullKo}
             </span>
           </div>
@@ -242,6 +243,9 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                           {/* Day Column */}
                           <td className="py-3.5 px-3 text-center align-middle">
                             <div className="flex flex-col items-center">
+                              {item.date && (
+                                <span className="text-pink-400 text-[10px] font-bold mb-0.5">{item.date}</span>
+                              )}
                               <span className={`font-black font-mono text-sm ${
                                 isToday ? 'text-cyan-400' : item.highlight ? 'text-pink-400' : 'text-zinc-300'
                               }`}>
@@ -314,6 +318,11 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                           : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white'
                       }`}
                     >
+                      {item.date && (
+                        <span className={`text-[9px] font-bold mb-0.5 ${isSelected ? 'text-pink-200' : 'text-pink-400'}`}>
+                          {item.date}
+                        </span>
+                      )}
                       <span className="text-xs font-bold font-mono uppercase">
                         {lang === 'ko' ? item.dayFullKo.replace('요일', '') : item.day}
                       </span>
@@ -399,6 +408,11 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-2">
+                        {item.date && (
+                          <span className="text-sm font-bold text-pink-400">
+                            {item.date}
+                          </span>
+                        )}
                         <span className={`text-sm font-black font-mono ${isToday ? 'text-cyan-400' : 'text-white'}`}>
                           {lang === 'ko' ? item.dayFullKo : item.dayFullEn}
                         </span>
@@ -454,6 +468,11 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
             </button>
 
             <div className="flex items-center space-x-2">
+              {detailModalItem.date && (
+                <span className="text-pink-400 font-bold text-lg">
+                  {detailModalItem.date}
+                </span>
+              )}
               <span className="text-xl font-black text-white font-mono">
                 {lang === 'ko' ? detailModalItem.dayFullKo : detailModalItem.dayFullEn}
               </span>
