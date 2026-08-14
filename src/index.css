@@ -109,6 +109,34 @@
 }
 
 
+@keyframes neonPulsePink {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(236, 72, 153, 0.3), inset 0 0 5px rgba(236, 72, 153, 0.1);
+    border-color: rgba(236, 72, 153, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.8), inset 0 0 10px rgba(236, 72, 153, 0.3);
+    border-color: rgba(236, 72, 153, 1);
+  }
+}
+.animate-neon-pulse-pink {
+  animation: neonPulsePink 2s infinite ease-in-out;
+}
+
+@keyframes neonTextPulsePink {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(236, 72, 153, 0.4);
+    color: rgba(244, 114, 182, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(236, 72, 153, 0.9);
+    color: rgba(253, 164, 175, 1);
+  }
+}
+.animate-neon-text-pink {
+  animation: neonTextPulsePink 2s infinite ease-in-out;
+}
+
 @layer base {
   body, html {
     background-color: #090a0f;

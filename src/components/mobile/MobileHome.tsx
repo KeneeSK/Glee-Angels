@@ -237,7 +237,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                           className={`cursor-pointer transition-colors ${
                             isToday
                               ? 'bg-gradient-to-r from-cyan-950/40 via-blue-950/30 to-purple-950/20 border-l-4 border-cyan-400'
-                              : item.highlight ? 'bg-gradient-to-r from-pink-950/60 to-purple-950/30 border-l-4 border-pink-500 shadow-[inset_0_0_10px_rgba(236,72,153,0.15)]' : 'hover:bg-zinc-800/40'
+                              : item.highlight ? 'bg-gradient-to-r from-pink-950/60 to-purple-950/30 border-l-4 animate-neon-pulse-pink' : 'hover:bg-zinc-800/40'
                           }`}
                         >
                           {/* Day Column */}
@@ -247,7 +247,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                                 <span className="text-pink-400 text-[10px] font-bold mb-0.5">{item.date}</span>
                               )}
                               <span className={`font-black font-mono text-sm ${
-                                isToday ? 'text-cyan-400' : item.highlight ? 'text-pink-300 drop-shadow-[0_0_8px_rgba(236,72,153,0.6)]' : 'text-zinc-300'
+                                isToday ? 'text-cyan-400' : item.highlight ? 'animate-neon-text-pink' : 'text-zinc-300'
                               }`}>
                                 {lang === 'ko' ? item.dayFullKo.replace('요일', '') : item.day}
                               </span>
@@ -316,7 +316,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                           : isToday
                           ? 'bg-cyan-950/60 text-cyan-300 border-cyan-500/50'
                           : item.highlight
-                          ? 'bg-gradient-to-b from-pink-900/60 to-purple-900/60 text-pink-100 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.3)]'
+                          ? 'bg-gradient-to-b from-pink-900/60 to-purple-900/60 text-pink-100 animate-neon-pulse-pink'
                           : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white'
                       }`}
                     >
@@ -406,7 +406,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
                       isToday
                         ? 'bg-gradient-to-r from-cyan-950/60 via-blue-950/40 to-purple-950/30 border-cyan-400 shadow-xl shadow-cyan-950/30'
                         : item.highlight
-                        ? 'bg-gradient-to-r from-pink-900/50 to-purple-900/30 border-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.25)] z-10'
+                        ? 'bg-gradient-to-r from-pink-900/50 to-purple-900/30 z-10 animate-neon-pulse-pink'
                         : 'bg-zinc-900/70 border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
