@@ -1,0 +1,24 @@
+{
+  "collections": [
+    {
+      "name": "schedules",
+      "description": "Weekly schedule data",
+      "documents": [
+        {
+          "id": "weekly",
+          "description": "Weekly schedule singleton",
+          "fields": [
+            {
+              "name": "items",
+              "type": "array",
+              "description": "Array of daily schedule objects",
+              "items": {
+                "type": "object"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
