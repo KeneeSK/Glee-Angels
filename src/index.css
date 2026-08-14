@@ -137,6 +137,34 @@
   animation: neonTextPulsePink 2s infinite ease-in-out;
 }
 
+@keyframes neonPulseGold {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3), inset 0 0 5px rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 1);
+  }
+}
+.animate-neon-pulse-gold {
+  animation: neonPulseGold 2s infinite ease-in-out;
+}
+
+@keyframes neonTextPulseGold {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+    color: rgba(253, 224, 71, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+    color: rgba(254, 240, 138, 1);
+  }
+}
+.animate-neon-text-gold {
+  animation: neonTextPulseGold 2s infinite ease-in-out;
+}
+
 @layer base {
   body, html {
     background-color: #090a0f;
