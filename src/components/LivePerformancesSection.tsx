@@ -130,6 +130,8 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                         ? 'bg-gradient-to-b from-pink-600 to-purple-800 border-pink-400 text-white shadow-lg shadow-pink-500/30 font-black scale-[1.02]'
                         : isToday
                         ? 'bg-cyan-950/70 border-cyan-500/60 text-cyan-300 hover:border-cyan-400'
+                        : item.highlight
+                        ? 'bg-gradient-to-t from-pink-900/60 to-purple-900/40 border-pink-400 text-pink-200 shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] z-10'
                         : 'bg-zinc-900/80 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                     }`}
                   >
@@ -254,11 +256,11 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                         key={item.day}
                         onClick={() => setSelectedDay(item.day)}
                         className={`hover:bg-zinc-800/50 transition-colors cursor-pointer ${
-                          item.day === selectedDay ? 'bg-pink-950/20' : ''
+                          item.day === selectedDay ? 'bg-pink-950/40 border-l-2 border-pink-500' : item.highlight ? 'bg-gradient-to-r from-pink-900/40 to-transparent border-l-2 border-pink-500 shadow-[inset_4px_0_15px_rgba(236,72,153,0.15)]' : ''
                         }`}
                       >
                         <td className="py-4 px-6 font-bold text-white font-mono flex items-center space-x-2">
-                          <span className={`w-2 h-2 rounded-full shrink-0 ${item.day === selectedDay ? 'bg-pink-500' : isTodayRow ? 'bg-cyan-400' : 'bg-zinc-700'}`} />
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${item.day === selectedDay ? 'bg-pink-500' : isTodayRow ? 'bg-cyan-400' : item.highlight ? 'bg-pink-400 shadow-[0_0_8px_rgba(236,72,153,0.8)]' : 'bg-zinc-700'}`} />
                           <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
                             {item.date && <span className="text-pink-400 text-xs sm:text-sm">{item.date}</span>}
                             <span>{item.day} ({lang === 'ko' ? item.dayFullKo : item.dayFullEn})</span>
