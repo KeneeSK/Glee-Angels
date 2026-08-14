@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MenuItem, MenuCategory } from '../types';
-import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight, Upload, Key } from 'lucide-react';
+import { X, Plus, Trash2, Save, Image as ImageIcon, Lock, Search, ChevronLeft, ChevronRight, Upload, Key, Check } from 'lucide-react';
 
 interface MenuAdminModalProps {
   isOpen: boolean;
@@ -14,6 +14,7 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
   const [isAuth, setIsAuth] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   
   // List View State
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,7 +31,11 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
   useEffect(() => {
     if (isOpen) {
       setItems([...menuItems]);
-      setIsAuth(false);
+      if (sessionStorage.getItem('glee_admin_auth') === 'true') {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
       setPassword('');
       setError(false);
       setEditingItemId(null);
@@ -41,6 +46,7 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
       setNewPassword('');
       setConfirmPassword('');
       setPasswordChangeMessage(null);
+      setIsSaved(false);
     }
   }, [isOpen, menuItems]);
 
@@ -63,6 +69,7 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
     const adminPassword = storedPassword || import.meta.env.VITE_ADMIN_PASSWORD || 'glee1234';
     if (password === adminPassword) {
       setIsAuth(true);
+      sessionStorage.setItem('glee_admin_auth', 'true');
       setError(false);
     } else {
       setError(true);
@@ -277,11 +284,11 @@ export const MenuAdminModal: React.FC<MenuAdminModalProps> = ({ isOpen, onClose,
               </>
             )}
             <button 
-              onClick={() => { onSave(items); onClose(); }}
-              className="flex items-center space-x-2 px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl transition-colors text-sm font-bold"
+              onClick={() => { onSave(items); setIsSaved(true); setTimeout(() => setIsSaved(false), 2000); }}
+              className={`flex items-center space-x-2 px-6 py-2 rounded-xl transition-colors text-sm font-bold ${isSaved ? 'bg-green-600 hover:bg-green-500 text-white' : 'bg-cyan-600 hover:bg-cyan-500 text-white'}`}
             >
-              <Save className="w-4 h-4" />
-              <span className="hidden sm:inline">Save & Close</span>
+              {isSaved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+              <span className="hidden sm:inline">{isSaved ? 'Saved!' : 'Save'}</span>
             </button>
             <button onClick={onClose} className="p-2 text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800 transition-colors">
               <X className="w-6 h-6" />

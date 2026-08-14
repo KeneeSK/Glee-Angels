@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { WeeklyScheduleItem } from '../types';
-import { X, Save, Lock, ChevronLeft, Calendar } from 'lucide-react';
+import { X, Save, Lock, ChevronLeft, Calendar, Check } from 'lucide-react';
 
 interface ScheduleAdminModalProps {
   isOpen: boolean;
@@ -14,16 +14,22 @@ export const ScheduleAdminModal: React.FC<ScheduleAdminModalProps> = ({ isOpen, 
   const [isAuth, setIsAuth] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   
   const [editingDay, setEditingDay] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
       setItems([...scheduleItems]);
-      setIsAuth(false);
+      if (sessionStorage.getItem('glee_admin_auth') === 'true') {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
       setPassword('');
       setError(false);
       setEditingDay(null);
+      setIsSaved(false);
     }
   }, [isOpen, scheduleItems]);
 
@@ -35,6 +41,7 @@ export const ScheduleAdminModal: React.FC<ScheduleAdminModalProps> = ({ isOpen, 
     const adminPassword = storedPassword || import.meta.env.VITE_ADMIN_PASSWORD || 'glee1234';
     if (password === adminPassword) {
       setIsAuth(true);
+      sessionStorage.setItem('glee_admin_auth', 'true');
       setError(false);
     } else {
       setError(true);
@@ -115,11 +122,11 @@ export const ScheduleAdminModal: React.FC<ScheduleAdminModalProps> = ({ isOpen, 
           </div>
           <div className="flex items-center space-x-3">
             <button 
-              onClick={() => { onSave(items); onClose(); }}
-              className="flex items-center space-x-2 px-6 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-xl transition-colors text-sm font-bold"
+              onClick={() => { onSave(items); setIsSaved(true); setTimeout(() => setIsSaved(false), 2000); }}
+              className={`flex items-center space-x-2 px-6 py-2 rounded-xl transition-colors text-sm font-bold ${isSaved ? 'bg-green-600 hover:bg-green-500 text-white' : 'bg-pink-600 hover:bg-pink-500 text-white'}`}
             >
-              <Save className="w-4 h-4" />
-              <span className="hidden sm:inline">Save & Close</span>
+              {isSaved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+              <span className="hidden sm:inline">{isSaved ? 'Saved!' : 'Save'}</span>
             </button>
             <button onClick={onClose} className="p-2 text-zinc-400 hover:text-white rounded-full hover:bg-zinc-800 transition-colors">
               <X className="w-6 h-6" />
