@@ -41,7 +41,7 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
       <div className="flex overflow-x-auto gap-2 pb-3 mb-4 hide-scrollbar -mx-4 px-4 sticky top-0 bg-[#090a0f]/95 z-20 py-2 backdrop-blur-md">
         <button
           onClick={() => setSelectedCategory('all')}
-          className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+          className={`shrink-0 px-3 py-1.5 rounded-full text-sm font-bold transition-all ${
             selectedCategory === 'all'
               ? 'bg-amber-400 text-black shadow-md shadow-amber-400/20'
               : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
@@ -53,7 +53,7 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+            className={`shrink-0 px-3 py-1.5 rounded-full text-sm font-bold transition-all ${
               selectedCategory === cat
                 ? 'bg-amber-400 text-black shadow-md shadow-amber-400/20'
                 : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
@@ -97,7 +97,7 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
                       ₱{item.pricePhp.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-zinc-400 line-clamp-2 leading-relaxed">
                     {lang === 'en' ? item.descriptionEn : item.descriptionKo}
                   </p>
                 </div>
@@ -132,16 +132,16 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
               <h3 className="text-xl font-bold text-white mt-2">
                 {lang === 'ko' ? selectedItem.nameKo : selectedItem.nameEn}
               </h3>
-              <p className="text-xs text-zinc-400 font-mono">
+              <p className="text-sm text-zinc-400 font-mono">
                 {lang === 'ko' ? selectedItem.nameEn : selectedItem.nameKo}
               </p>
             </div>
 
             <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 flex justify-between items-center">
-              <span className="text-xs text-zinc-400">{lang === 'ko' ? '가격' : 'Price'}</span>
+              <span className="text-sm text-zinc-400">{lang === 'ko' ? '가격' : 'Price'}</span>
               <div className="flex items-baseline space-x-2">
                 {selectedItem.originalPricePhp && (
-                  <span className="text-xs text-zinc-500 line-through font-mono">
+                  <span className="text-sm text-zinc-500 line-through font-mono">
                     ₱{selectedItem.originalPricePhp.toLocaleString()}
                   </span>
                 )}
@@ -152,15 +152,15 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
             </div>
 
             <div className="space-y-1">
-              <p className="text-xs font-bold text-zinc-400">{lang === 'ko' ? '설명' : 'Description'}</p>
-              <p className="text-xs text-zinc-200 leading-relaxed">
+              <p className="text-sm font-bold text-zinc-400">{lang === 'ko' ? '설명' : 'Description'}</p>
+              <p className="text-sm text-zinc-200 leading-relaxed">
                 {lang === 'ko' ? selectedItem.descriptionKo : selectedItem.descriptionEn}
               </p>
             </div>
 
             <button
               onClick={() => setSelectedItem(null)}
-              className="w-full py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-bold text-xs"
+              className="w-full py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-bold text-sm"
             >
               {lang === 'ko' ? '닫기' : 'Close'}
             </button>

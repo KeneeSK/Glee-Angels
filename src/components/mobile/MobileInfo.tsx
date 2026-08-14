@@ -72,12 +72,12 @@ export const MobileInfo: React.FC<{ lang: Language }> = ({ lang }) => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
           <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-black/80 backdrop-blur-md border border-purple-500/30 flex items-center justify-between">
-            <span className="text-xs font-bold text-white">Fields Ave, Angeles City</span>
+            <span className="text-sm font-bold text-white">Fields Ave, Angeles City</span>
             <a
               href="https://maps.google.com/?q=Glee+Angels+Fields+Ave+Angeles+City"
               target="_blank"
               rel="noreferrer"
-              className="px-3 py-1 bg-purple-500 hover:bg-purple-400 text-white font-bold text-xs rounded-lg shadow-md transition-colors"
+              className="px-3 py-1 bg-purple-500 hover:bg-purple-400 text-white font-bold text-sm rounded-lg shadow-md transition-colors"
             >
               {lang === 'ko' ? '지도 앱으로 열기' : 'Open in Maps'}
             </a>
