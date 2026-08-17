@@ -34,6 +34,7 @@ export const MobileHome: React.FC<MobileHomeProps> = ({ lang }) => {
           src={gleeAngelsStageMobileImg}
           alt="Glee Angels Stage"
           className="absolute inset-0 w-full h-full object-cover object-center scale-100 transition-transform duration-700"
+          fetchPriority="high"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/50 to-black/30 z-10" />

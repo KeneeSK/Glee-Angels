@@ -112,6 +112,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                 <img
                   src={gleeAngelsStageHorizontalImg}
                   alt="1F Live Band Lounge Stage"
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-80 sm:h-96 object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
                 />
@@ -160,6 +161,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                 <img
                   src={ktvFamilyRoomImg}
                   alt="2F Family KTV Private Room"
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />

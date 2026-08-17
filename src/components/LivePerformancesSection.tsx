@@ -389,6 +389,7 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
                     <img
                       src={item.image}
                       alt={item.titleEn}
+                      loading="lazy"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
@@ -431,6 +432,7 @@ export const LivePerformancesSection: React.FC<LivePerformancesSectionProps> = (
             <img
               src={activeLightboxImage.image}
               alt={activeLightboxImage.titleEn}
+              loading="lazy"
               referrerPolicy="no-referrer"
               className="w-full max-h-[70vh] object-contain bg-black"
             />

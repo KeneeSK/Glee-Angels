@@ -114,7 +114,7 @@ export const MobileMenu: React.FC<{ lang: Language }> = ({ lang }) => {
             
             {selectedItem.image && (
               <div className="w-full h-40 -mt-6 -mx-6 mb-4 rounded-t-3xl overflow-hidden relative">
-                <img src={selectedItem.image} alt={selectedItem.nameEn} className="w-full h-full object-cover" />
+                <img src={selectedItem.image} alt={selectedItem.nameEn} loading="lazy" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12141d] to-transparent"></div>
               </div>
             )}

@@ -31,6 +31,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ lang }) => {
           src={gleeAngelsStageMobileImg}
           alt="Glee Angels Stage"
           className="w-full h-full object-cover object-center opacity-45 scale-105"
+          fetchPriority="high"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-[#090a0f]/75 to-[#090a0f]/60" />

@@ -191,6 +191,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
             <img
               src={signatureCocktailsImg}
               alt="Glee Angels Special Sets"
+              loading="lazy"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#090a0f] via-transparent to-transparent opacity-80" />
@@ -408,7 +409,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
 
             {selectedItem.image && (
               <div className="w-full h-48 sm:h-56 -mt-6 -mx-6 sm:-mt-8 sm:-mx-8 mb-6 rounded-t-3xl overflow-hidden relative border-b border-zinc-800 shrink-0">
-                <img src={selectedItem.image} alt={selectedItem.nameEn} className="w-full h-full object-cover" />
+                <img src={selectedItem.image} alt={selectedItem.nameEn} loading="lazy" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12141c] to-transparent"></div>
               </div>
             )}
