@@ -168,9 +168,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                   <p className="text-xs text-pink-300 font-mono font-bold uppercase tracking-wider">
                     Soundproof Family KTV
                   </p>
-                  <p className="text-sm font-semibold text-white">
-                    Deluxe Rooms Available for Small Groups to 20+ Person VIP Parties
-                  </p>
                 </div>
               </div>
             </div>
